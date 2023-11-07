@@ -1,0 +1,27 @@
+﻿@typeparam TItem
+
+@if (Items is null)
+{
+    <p><em>Loading....</em></p>
+}
+else
+{
+    <div class="card shadow border-0">
+        <div class="card-header border-0 bg-white">
+            <h4 class="text-center">@title</h4>
+        </div>
+        <div class="card-body">
+            <table class="table table-hover">
+                <thead>
+                    @HeaderTemplate
+                </thead>
+                <tbody>
+                    @foreach (var item in Items)
+                    {
+                        @RowTemplate(item)
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}

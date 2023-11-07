@@ -12,4 +12,29 @@
     <PackageReference Include="System.Net.Http.Json" Version="7.0.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Core\Exceptions\" />
+    <Folder Include="Core\BaseClient\" />
+    <Folder Include="Core\Constants\" />
+    <Folder Include="Core\DI\" />
+    <Folder Include="Core\DataStore\" />
+    <Folder Include="Core\Enums\" />
+    <Folder Include="Core\Style\" />
+    <Folder Include="Core\Utility\" />
+    <Folder Include="Features\Home\Data\DataSource\" />
+    <Folder Include="Features\Home\Data\Model\" />
+    <Folder Include="Features\Home\Data\IRepository\" />
+    <Folder Include="Features\Home\Domain\Entitiy\" />
+    <Folder Include="Features\Home\Domain\Usecase\" />
+    <Folder Include="Features\Home\Domain\Repository\" />
+    <Folder Include="Features\Home\Presentation\Logic\" />
+    <Folder Include="Features\Home\Presentation\Componant\" />
+    <Folder Include="Features\Product\Data\DataSource\" />
+    <Folder Include="Features\Product\Data\IRepository\" />
+    <Folder Include="Features\Product\Data\Model\" />
+    <Folder Include="Features\Product\Domain\Repository\" />
+    <Folder Include="Features\Product\Domain\Usecase\" />
+    <Folder Include="Features\Product\Presentation\Componant\" />
+  </ItemGroup>
+
 </Project>

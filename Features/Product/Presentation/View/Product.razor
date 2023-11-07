@@ -1,0 +1,42 @@
+﻿@inherits ProductBase
+@page "/product"
+
+<PageTitle>Product List</PageTitle>
+
+<h3 class="mb-5">Product List</h3>
+
+@if (productListVMs is null)
+{
+    <p><em>Loading....</em></p>
+}
+else
+{
+    <TableWidget Items="productListVMs" title="Products List">
+        <HeaderTemplate>
+            <tr>
+                <th>Number</th>
+                <th>Name</th>
+                <th>Details</th>
+                <th></th>
+            </tr>
+        </HeaderTemplate>
+        <RowTemplate Context="product">
+            @foreach (var product in productListVMs)
+            {
+            <tr>
+                <td>@product.Number</td>
+                <td>@product.Name</td>
+                <td>@product.Details</td>
+                <td>
+                    <button class="btn btn-danger">Delete</button>
+                </td>
+            </tr>
+            }
+
+        </RowTemplate>
+    </TableWidget>
+}
+
+
+
+
