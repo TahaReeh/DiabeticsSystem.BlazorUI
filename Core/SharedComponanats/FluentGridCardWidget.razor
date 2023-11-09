@@ -1,0 +1,16 @@
+﻿
+<FluentCard Width=""
+            Height=""
+            Class="p-4 shadow">
+    <h4 class="mb-4">@Title</h4>
+    <FluentButton IconStart="@(new Icons.Regular.Size16.AddCircle())"
+                  Loading="@Loading"
+                  OnClick="@OnBtnMainClick"
+                  Name="BtnMain"
+                  Class="mb-3">
+        Create @Title
+    </FluentButton>
+
+    @RawTemplate
+
+</FluentCard>

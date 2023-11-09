@@ -5,41 +5,53 @@
 
 <h3 class="mb-5">Products</h3>
 
-<TableWidget Items="productList"
-             Title="Products"
-             OnClickCreate="@OnCreateClick"
-             Loading="@loading">
-    <HeaderTemplate>
-        <tr>
-            <th>Number</th>
-            <th>Name</th>
-            <th>Details</th>
-            <th></th>
-        </tr>
-    </HeaderTemplate>
-    <RowTemplate Context="product">
-        <tr>
-            <td>@product.Number</td>
-            <td>@product.Name</td>
-            <td>@product.Details</td>
-            <td>
-                <FluentButton Value="@product.Id.ToString()"
-                              IconStart="@(new Icons.Regular.Size16.Delete().WithColor("white"))"
+<FluentGridCardWidget Title="Title"
+                      Loading=@loading
+                      OnBtnMainClick="@OnCreateClick">
+    <RawTemplate>
+        <FluentDataGrid Items="@Filtereditems"
+                        ResizableColumns=false
+                        Pagination="@pagination"
+                        GridTemplateColumns="0.2fr 0.8fr 1fr 0.3fr"
+                        Style="height: 405px; overflow:auto;">
+
+            <PropertyColumn Property="@(p => p.Number)" Sortable="true" />
+            <PropertyColumn Property="@(c => c.Name)"
+                            Sortable="true"
+                            Tooltip="true"
+                            Title="Name">
+                <ColumnOptions>
+                    <div class="search-box">
+                        <FluentSearch type="search"
+                                      Autofocus=true
+                        @bind-Value=nameFilter
+                        @oninput="HandleNameFilter"
+                        @bind-Value:after="HandleClear"
+                                      Placeholder="Search by Name..." />
+                    </div>
+                </ColumnOptions>
+            </PropertyColumn>
+            <PropertyColumn Property="@(p => p.Details)" Sortable="true" />
+
+            <TemplateColumn Title="Actions"
+                            Tooltip=true>
+                <FluentButton IconStart="@(new Icons.Regular.Size16.Edit().WithColor("white"))"
+                              Appearance="Appearance.Accent"
+                              Color="white"
+                              Loading=false
+                              Name="Edit">
+                </FluentButton>
+                <FluentButton IconStart="@(new Icons.Regular.Size16.Delete().WithColor("white"))"
                               Color="white"
                               BackgroundColor="@(ColorConst.BtnDelete)"
-                              OnClick="@(()=> OnDeleteClick(@product.Name))"
-                              Loading="@loading">
+                              Loading=false
+                              Name="Delete">
                 </FluentButton>
-                <FluentButton Value="@product.Id.ToString()"
-                              IconStart="@(new Icons.Regular.Size16.Edit().WithColor("white"))"
-                              Color="white"
-                              BackgroundColor="@(ColorConst.BtnEdit)"
-                              OnClick="@OnCreateClick"
-                              Loading="@loading">
-                </FluentButton>
-            </td>
-        </tr>
-    </RowTemplate>
-</TableWidget>
+            </TemplateColumn>
 
+        </FluentDataGrid>
 
+        <FluentPaginator State="@pagination" />
+    </RawTemplate>
+
+</FluentGridCardWidget>
