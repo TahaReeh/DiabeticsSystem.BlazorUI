@@ -1,4 +1,5 @@
-﻿using DiabeticsSystem.BlazorUI.Features.Product.Domain.Entitiy;
+﻿using DiabeticsSystem.BlazorUI.Core.Constants;
+using DiabeticsSystem.BlazorUI.Features.Product.Domain.Entitiy;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Fast.Components.FluentUI;
 using System.Net.Http.Json;
@@ -49,7 +50,7 @@ namespace DiabeticsSystem.BlazorUI.Features.Product.Presentation.Logic
             loading = true;
             await Task.Delay(2000);
             loading = false;
-            Nav!.NavigateTo("/");
+            Nav!.NavigateTo(RouterConst.Home);
         }
 
         public async Task OnDeleteClick(Guid id)

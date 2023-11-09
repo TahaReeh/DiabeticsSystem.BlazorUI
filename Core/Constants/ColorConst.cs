@@ -1,10 +1,9 @@
-﻿using System.Drawing;
-
-namespace DiabeticsSystem.BlazorUI.Core.Constants
+﻿namespace DiabeticsSystem.BlazorUI.Core.Constants
 {
     public static class ColorConst
     {
-        public static readonly string BtnDelete = "#da3832";
-        public static readonly string BtnEdit = "#104a89";
+        public const float AppTheme = (float)0.15;
+        public const string BtnDelete = "#da3832";
+        public const string BtnEdit = "#104a89";
     }
 }
