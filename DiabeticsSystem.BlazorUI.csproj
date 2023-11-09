@@ -9,13 +9,14 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="7.0.13" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="7.0.13" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.Fast.Components.FluentUI" Version="3.3.0" />
+    <PackageReference Include="Microsoft.Fast.Components.FluentUI.Icons" Version="3.3.0" />
     <PackageReference Include="System.Net.Http.Json" Version="7.0.1" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Core\Exceptions\" />
     <Folder Include="Core\BaseClient\" />
-    <Folder Include="Core\Constants\" />
     <Folder Include="Core\DI\" />
     <Folder Include="Core\DataStore\" />
     <Folder Include="Core\Enums\" />
@@ -29,9 +30,7 @@
     <Folder Include="Features\Home\Domain\Repository\" />
     <Folder Include="Features\Home\Presentation\Logic\" />
     <Folder Include="Features\Home\Presentation\Componant\" />
-    <Folder Include="Features\Product\Data\DataSource\" />
     <Folder Include="Features\Product\Data\IRepository\" />
-    <Folder Include="Features\Product\Data\Model\" />
     <Folder Include="Features\Product\Domain\Repository\" />
     <Folder Include="Features\Product\Domain\Usecase\" />
     <Folder Include="Features\Product\Presentation\Componant\" />

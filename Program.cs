@@ -1,4 +1,4 @@
-using DiabeticsSystem.BlazorUI.Features;
+using DiabeticsSystem.BlazorUI;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 

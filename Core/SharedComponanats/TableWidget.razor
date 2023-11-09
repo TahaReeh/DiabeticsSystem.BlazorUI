@@ -2,23 +2,44 @@
 
 @if (Items is null)
 {
-    <p><em>Loading....</em></p>
+    <div class="card shadow border-0">
+        <div class="card-header border-0 bg-white">
+            <h4 class="text-center">@Title</h4>
+        </div>
+        <div class="mb-4">
+            <FluentButton IconStart="@(new Icons.Regular.Size16.AddCircle())"
+                          Loading="@Loading"
+                          OnClick="@OnClickCreate">
+                Create @Title
+            </FluentButton>
+        </div>
+        <div class=" card-body h-50 mt-5">
+            <h5 class="text-center" style="color:gray">There is no data to be displayed.</h5>
+        </div>
+    </div>
 }
 else
 {
     <div class="card shadow border-0">
         <div class="card-header border-0 bg-white">
-            <h4 class="text-center">@title</h4>
+            <h4 class="text-center">@Title</h4>
+        </div>
+        <div class="m-4">
+            <FluentButton IconStart="@(new Icons.Regular.Size16.AddCircle())"
+                          Loading="@Loading"
+                          OnClick="@OnClickCreate">
+                Create @Title
+            </FluentButton>
         </div>
         <div class="card-body">
             <table class="table table-hover">
-                <thead>
+                <thead class="thead-dark">
                     @HeaderTemplate
                 </thead>
                 <tbody>
                     @foreach (var item in Items)
                     {
-                        @RowTemplate(item)
+                        @RowTemplate!(item)
                     }
                 </tbody>
             </table>

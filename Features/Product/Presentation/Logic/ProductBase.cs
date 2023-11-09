@@ -8,12 +8,31 @@ namespace DiabeticsSystem.BlazorUI.Features.Product.Presentation.Logic
     {
         [Inject]
         private HttpClient? Http { get; set; }
+        [Inject]
+        private NavigationManager? Nav { get; set; }
 
-        public List<ProductListVM>? productListVMs;
+        public bool loading = false;
+
+        public List<ProductVM>? productList;
 
         protected override async Task OnInitializedAsync()
         {
-            productListVMs = await Http!.GetFromJsonAsync<List<ProductListVM>>("api/Product/GetAllProducts");
+            productList = await Http!.GetFromJsonAsync<List<ProductVM>>("api/Product/GetAllProducts");
+        }
+
+        public async Task OnCreateClick()
+        {
+            loading = true;
+            await Task.Delay(2000);
+            loading = false;
+            Nav!.NavigateTo("/");
+        }
+
+        public async Task OnDeleteClick(string test)
+        {
+            loading = true;
+            await Task.Delay(2000);
+            loading = false;
         }
     }
 }

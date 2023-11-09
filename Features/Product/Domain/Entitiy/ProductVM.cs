@@ -1,6 +1,6 @@
 ﻿namespace DiabeticsSystem.BlazorUI.Features.Product.Domain.Entitiy
 {
-    public class ProductListVM
+    public class ProductVM
     {
         public Guid Id { get; set; }
         public string Number { get; set; } = string.Empty;
