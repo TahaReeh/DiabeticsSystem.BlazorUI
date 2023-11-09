@@ -7,7 +7,7 @@
 
 <FluentCard Width=""
             Height=""
-            Class="p-5 shadow">
+            Class="p-4 shadow">
     <FluentButton IconStart="@(new Icons.Regular.Size16.AddCircle())"
                   Loading="false"
                   Class="mb-3">
@@ -37,17 +37,19 @@
         </PropertyColumn>
 
         <PropertyColumn Property="@(p => p.Details)" Sortable="true" />
-        <TemplateColumn Title="Actions">
+        <TemplateColumn Title="Actions"
+                        Tooltip=true>
+            <FluentButton IconStart="@(new Icons.Regular.Size16.Edit().WithColor("white"))"
+                          Appearance="Appearance.Accent"
+                          Color="white"
+                          Loading=false
+                          Name="Edit">
+            </FluentButton>
             <FluentButton IconStart="@(new Icons.Regular.Size16.Delete().WithColor("white"))"
                           Color="white"
                           BackgroundColor="@(ColorConst.BtnDelete)"
                           Loading=false
-                          Class="me-2">
-            </FluentButton>
-            <FluentButton IconStart="@(new Icons.Regular.Size16.Edit().WithColor("white"))"
-                          Color="white"
-                          BackgroundColor="@(ColorConst.BtnEdit)"
-                          Loading=false>
+                          Name="Delete">
             </FluentButton>
         </TemplateColumn>
 

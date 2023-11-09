@@ -1,17 +1,29 @@
 ﻿@inherits LayoutComponentBase
 
-<div class="page">
-    <div class="sidebar">
+<FluentLayout>
+    <FluentHeader>
+        Diabetics System
+    </FluentHeader>
+    <FluentStack Class="main" Orientation="Orientation.Horizontal" Width="100%">
         <NavMenu />
-    </div>
-
-    <main>
-        <div class="top-row px-4">
-            <a href="https://www.facebook.com/evotechly" target="_blank">About</a>
+        <FluentBodyContent>
+            <div class="content">
+                @Body
+            </div>
+        </FluentBodyContent>
+    </FluentStack>
+    <FluentFooter>
+        <div class="link1">
+            <a href="https://www.facebook.com/evotechly" target="_blank">About Evolution Technology</a>
         </div>
+        <div class="link2">
+            <div class="copy"><small>Evolution Technology © 2023. All rights reserved.</small></div>
+        </div>
+    </FluentFooter>
+</FluentLayout>
 
-        <article class="content px-4">
-            @Body
-        </article>
-    </main>
+<div id="blazor-error-ui">
+    An unhandled error has occurred.
+    <a href="" class="reload">Reload</a>
+    <a class="dismiss">🗙</a>
 </div>
