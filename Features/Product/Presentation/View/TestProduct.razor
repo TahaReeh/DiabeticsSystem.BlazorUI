@@ -2,63 +2,64 @@
 @page "/testProduct"
 
 <PageTitle>Products Test</PageTitle>
+
 <h3 class="mb-5">Products</h3>
 
-<div class="card shadow border-0 p-4">
-    <div class="card-header border-0 bg-white">
-        <h4 class="text-center">Title</h4>
-    </div>
-    <div class="mt-2">
-        <FluentButton IconStart="@(new Icons.Regular.Size16.AddCircle())"
-                      Loading="false">
-            Create
-        </FluentButton>
-    </div>
-    <div class=" card-body h-50 mt-3">
-        <FluentDataGrid Items="@Items"
-                        ResizableColumns=false
-                        Pagination="@pagination"
-                        GridTemplateColumns="0.2fr 0.8fr 1fr 0.3fr"
-                        Style="height: 405px; overflow:auto;"
-                        Virtualize=false>
-            <PropertyColumn Property="@(p => p.Number)" Sortable="true" />
-            <PropertyColumn Property="@(c => c.Name)"
-                            Sortable="true"
-                            Tooltip="true"
-                            Title="Name">
-                <ColumnOptions>
-                    <div class="search-box">
-                        <FluentSearch type="search"
-                                      Autofocus=true
-                        @bind-Value=nameFilter
-                        @oninput="HandleCountryFilter"
-                        @bind-Value:after="HandleClear"
-                                      Placeholder="Search by Name..." />
-                    </div>
-                </ColumnOptions>
-            </PropertyColumn>
+<FluentCard Width=""
+            Height=""
+            Class="p-5 shadow">
+    <FluentButton IconStart="@(new Icons.Regular.Size16.AddCircle())"
+                  Loading="false"
+                  Class="mb-3">
+        Create Product
+    </FluentButton>
 
-            <PropertyColumn Property="@(p => p.Details)" Sortable="true" />
-            <TemplateColumn Title="Actions">
-                <FluentButton IconStart="@(new Icons.Regular.Size16.Delete().WithColor("white"))"
-                              Color="white"
-                              BackgroundColor="@(ColorConst.BtnDelete)"
-                              Loading=false>
-                </FluentButton>
-                <FluentButton IconStart="@(new Icons.Regular.Size16.Edit().WithColor("white"))"
-                              Color="white"
-                              BackgroundColor="@(ColorConst.BtnEdit)"
-                              Loading=false>
-                </FluentButton>
-            </TemplateColumn>
-        </FluentDataGrid>
+    <FluentDataGrid Items="@Items"
+                    ResizableColumns=false
+                    Pagination="@pagination"
+                    GridTemplateColumns="0.2fr 0.8fr 1fr 0.3fr"
+                    Style="height: 405px; overflow:auto;">
+        <PropertyColumn Property="@(p => p.Number)" Sortable="true" />
+        <PropertyColumn Property="@(c => c.Name)"
+                        Sortable="true"
+                        Tooltip="true"
+                        Title="Name">
+            <ColumnOptions>
+                <div class="search-box">
+                    <FluentSearch type="search"
+                                  Autofocus=true
+                    @bind-Value=nameFilter
+                    @oninput="HandleCountryFilter"
+                    @bind-Value:after="HandleClear"
+                                  Placeholder="Search by Name..." />
+                </div>
+            </ColumnOptions>
+        </PropertyColumn>
 
-        <FluentPaginator State="@pagination" />
+        <PropertyColumn Property="@(p => p.Details)" Sortable="true" />
+        <TemplateColumn Title="Actions">
+            <FluentButton IconStart="@(new Icons.Regular.Size16.Delete().WithColor("white"))"
+                          Color="white"
+                          BackgroundColor="@(ColorConst.BtnDelete)"
+                          Loading=false
+                          Class="me-2">
+            </FluentButton>
+            <FluentButton IconStart="@(new Icons.Regular.Size16.Edit().WithColor("white"))"
+                          Color="white"
+                          BackgroundColor="@(ColorConst.BtnEdit)"
+                          Loading=false>
+            </FluentButton>
+        </TemplateColumn>
 
-        <FluentSwitch @bind-Value="@_clearItems"
-        @bind-Value:after="ToggleItemsAsync"
-                      UncheckedMessage="Clear all results"
-                      CheckedMessage="Restore all results">
-        </FluentSwitch>
-    </div>
-</div>
+    </FluentDataGrid>
+
+    <FluentPaginator State="@pagination" />
+
+    <FluentSwitch @bind-Value="@_clearItems"
+    @bind-Value:after="ToggleItemsAsync"
+                  UncheckedMessage="Clear all results"
+                  CheckedMessage="Restore all results">
+    </FluentSwitch>
+
+
+</FluentCard>

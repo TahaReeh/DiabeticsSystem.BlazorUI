@@ -1,12 +1,14 @@
 ﻿using DiabeticsSystem.BlazorUI.Features.Product.Domain.Entitiy;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Fast.Components.FluentUI;
+using Microsoft.Fast.Components.FluentUI.DesignTokens;
 using System.Net.Http.Json;
 
 namespace DiabeticsSystem.BlazorUI.Features.Product.Presentation.Logic
 {
     public class TestProductBase : ComponentBase
     {
+
         [Inject]
         private HttpClient? Http { get; set; }
         //[Inject]
