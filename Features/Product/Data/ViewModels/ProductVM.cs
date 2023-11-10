@@ -1,4 +1,4 @@
-﻿namespace DiabeticsSystem.BlazorUI.Features.Product.Domain.Entitiy
+﻿namespace DiabeticsSystem.BlazorUI.Features.Product.Data.ViewModels
 {
     public class ProductVM
     {

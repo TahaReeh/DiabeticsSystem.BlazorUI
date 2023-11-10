@@ -1,6 +1,6 @@
 ﻿namespace DiabeticsSystem.BlazorUI.Core.Constants
 {
-    public static class ColorConst
+    public static class AppColors
     {
         public const float AppTheme = (float)0.15;
         public const string BtnDelete = "#da3832";

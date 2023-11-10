@@ -1,18 +1,17 @@
 ﻿using DiabeticsSystem.BlazorUI.Core.Constants;
-using DiabeticsSystem.BlazorUI.Features.Product.Domain.Entitiy;
+using DiabeticsSystem.BlazorUI.Features.Product.Data;
+using DiabeticsSystem.BlazorUI.Features.Product.Data.ViewModels;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Fast.Components.FluentUI;
-using System.Net.Http.Json;
 
 namespace DiabeticsSystem.BlazorUI.Features.Product.Presentation.Logic
 {
     public class ProductBase : ComponentBase
     {
         [Inject]
-        private HttpClient? Http { get; set; }
+        private IProductUsecase Usecase { get; set; } = default!;
         [Inject]
         private NavigationManager? Nav { get; set; }
-
 
         public PaginationState pagination = new() { ItemsPerPage = 10 };
 
@@ -24,7 +23,7 @@ namespace DiabeticsSystem.BlazorUI.Features.Product.Presentation.Logic
 
         protected override async Task OnInitializedAsync()
         {
-            Items = (await Http!.GetFromJsonAsync<List<ProductVM>>("api/Product/GetAllProducts"))!.AsQueryable();
+            Items = await Usecase.GetAllProduct();
         }
      
         public IQueryable<ProductVM>? Filtereditems =>
@@ -50,7 +49,7 @@ namespace DiabeticsSystem.BlazorUI.Features.Product.Presentation.Logic
             loading = true;
             await Task.Delay(2000);
             loading = false;
-            Nav!.NavigateTo(RouterConst.Home);
+            Nav!.NavigateTo(AppRouter.Home);
         }
 
         public async Task OnDeleteClick(Guid id)
