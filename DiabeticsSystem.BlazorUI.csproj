@@ -14,6 +14,8 @@
     <Compile Remove="Core\Exceptions\**" />
     <Compile Remove="Core\Style\**" />
     <Compile Remove="Core\Utility\**" />
+    <Compile Remove="Features\Home\Presentation\Componant\**" />
+    <Compile Remove="Features\Home\Presentation\Logic\**" />
     <Compile Remove="Features\Product\Data\IRepository\**" />
     <Compile Remove="Features\Product\Presentation\Componant\**" />
     <Content Remove="Core\BaseClient\**" />
@@ -23,6 +25,8 @@
     <Content Remove="Core\Exceptions\**" />
     <Content Remove="Core\Style\**" />
     <Content Remove="Core\Utility\**" />
+    <Content Remove="Features\Home\Presentation\Componant\**" />
+    <Content Remove="Features\Home\Presentation\Logic\**" />
     <Content Remove="Features\Product\Data\IRepository\**" />
     <Content Remove="Features\Product\Presentation\Componant\**" />
     <EmbeddedResource Remove="Core\BaseClient\**" />
@@ -32,6 +36,8 @@
     <EmbeddedResource Remove="Core\Exceptions\**" />
     <EmbeddedResource Remove="Core\Style\**" />
     <EmbeddedResource Remove="Core\Utility\**" />
+    <EmbeddedResource Remove="Features\Home\Presentation\Componant\**" />
+    <EmbeddedResource Remove="Features\Home\Presentation\Logic\**" />
     <EmbeddedResource Remove="Features\Product\Data\IRepository\**" />
     <EmbeddedResource Remove="Features\Product\Presentation\Componant\**" />
     <None Remove="Core\BaseClient\**" />
@@ -41,6 +47,8 @@
     <None Remove="Core\Exceptions\**" />
     <None Remove="Core\Style\**" />
     <None Remove="Core\Utility\**" />
+    <None Remove="Features\Home\Presentation\Componant\**" />
+    <None Remove="Features\Home\Presentation\Logic\**" />
     <None Remove="Features\Product\Data\IRepository\**" />
     <None Remove="Features\Product\Presentation\Componant\**" />
   </ItemGroup>
@@ -56,14 +64,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\Home\Data\DataSource\" />
-    <Folder Include="Features\Home\Data\Model\" />
-    <Folder Include="Features\Home\Data\IRepository\" />
-    <Folder Include="Features\Home\Domain\Entitiy\" />
-    <Folder Include="Features\Home\Domain\Usecase\" />
-    <Folder Include="Features\Home\Domain\Repository\" />
-    <Folder Include="Features\Home\Presentation\Logic\" />
-    <Folder Include="Features\Home\Presentation\Componant\" />
+    <Folder Include="Features\Customer\Presentation\Componant\" />
+    <Folder Include="Features\Home\Data\" />
+    <Folder Include="Features\Home\Domain\" />
+    <Folder Include="Features\Product\Presentation\Componants\" />
   </ItemGroup>
 
 </Project>

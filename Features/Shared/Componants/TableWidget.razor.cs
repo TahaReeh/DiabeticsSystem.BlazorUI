@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 
-namespace DiabeticsSystem.BlazorUI.Core.SharedComponanats
+namespace DiabeticsSystem.BlazorUI.Features.Shared.Componants
 {
     public partial class TableWidget<TItem>
     {

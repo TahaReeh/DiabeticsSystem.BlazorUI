@@ -1,13 +1,11 @@
 ﻿using AutoMapper;
-using DiabeticsSystem.BlazorUI.Core.Constants;
-using DiabeticsSystem.BlazorUI.Features.Product.Data.ViewModels;
-using DiabeticsSystem.BlazorUI.Features.Shared.Repository.Contract;
+using DiabeticsSystem.BlazorUI.Features.Product.Domain.ViewModels;
 
-namespace DiabeticsSystem.BlazorUI.Features.Product.Data
+namespace DiabeticsSystem.BlazorUI.Features.Product.Domain.Usecase
 {
     public interface IProductUsecase
     {
-        Task<IQueryable<ProductVM>> GetAllProduct();
+        Task<IQueryable<ProductEntity>> GetAllProduct();
     }
 
     public class ProductUsecase : IProductUsecase
@@ -20,10 +18,11 @@ namespace DiabeticsSystem.BlazorUI.Features.Product.Data
             unitOfWork = _unitOfWork;
             mapper = _mapper;
         }
-        public async Task<IQueryable<ProductVM>> GetAllProduct()
+
+        public async Task<IQueryable<ProductEntity>> GetAllProduct()
         {
             var request = await unitOfWork.ProductRepository.GetAll(EndPoints.GetAllProducts);
-            var dto = (mapper.Map<List<ProductVM>>(request)).AsQueryable();
+            var dto = mapper.Map<List<ProductEntity>>(request).AsQueryable();
             return dto;
         }
     }

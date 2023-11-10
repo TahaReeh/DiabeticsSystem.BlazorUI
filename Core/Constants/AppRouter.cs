@@ -4,5 +4,7 @@
     {
         public const string Home = "/";
         public const string Products = "/product";
+        public const string ProductsUpsert = "/productupsert/";
+
     }
 }

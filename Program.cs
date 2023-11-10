@@ -1,10 +1,6 @@
-using DiabeticsSystem.BlazorUI;
-using DiabeticsSystem.BlazorUI.Features.Product.Data;
-using DiabeticsSystem.BlazorUI.Features.Shared.Repository;
-using DiabeticsSystem.BlazorUI.Features.Shared.Repository.Contract;
-using Microsoft.AspNetCore.Components.Web;
+using DiabeticsSystem.BlazorUI.Features.Customer.Domain.Usecase;
+using DiabeticsSystem.BlazorUI.Features.Product.Domain.Usecase;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
-using Microsoft.Fast.Components.FluentUI;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
@@ -22,6 +18,7 @@ builder.Services.AddScoped(sp => new HttpClient
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IProductUsecase, ProductUsecase>();
+builder.Services.AddScoped<ICustomerUsecase, CustomerUsecase>();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 await builder.Build().RunAsync();

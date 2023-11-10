@@ -1,10 +1,10 @@
-﻿namespace DiabeticsSystem.BlazorUI.Features.Product.Data.ViewModels
+﻿namespace DiabeticsSystem.BlazorUI.Features.Customer.Domain.Entity
 {
-    public class ProductVM
+    public class CustomerEntity
     {
         public Guid Id { get; set; }
         public string Number { get; set; } = string.Empty;
         public string Name { get; set; } = string.Empty;
-        public string Details { get; set; } = string.Empty;
+        public string Phone { get; set; } = string.Empty;
     }
 }

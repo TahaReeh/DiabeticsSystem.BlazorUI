@@ -2,7 +2,7 @@
 
 namespace DiabeticsSystem.BlazorUI.Features.Product.Data.Model
 {
-    public class ProductEntity : AuditableEntity
+    public class ProductModel : AuditableEntity
     {
         public Guid Id { get; set; }
         public string Number { get; set; } = string.Empty;

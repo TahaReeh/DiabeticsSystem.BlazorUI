@@ -1,5 +1,5 @@
-﻿@inherits ProductBase
-@page "/product"
+﻿@inherits CustomerBase
+@page "/customer"
 
 <PageTitle>@Title</PageTitle>
 
@@ -30,11 +30,11 @@
                     </div>
                 </ColumnOptions>
             </PropertyColumn>
-            <PropertyColumn Property="@(p => p.Details)" Sortable="true" />
+            <PropertyColumn Property="@(p => p.Phone)" Sortable="true" />
 
             <TemplateColumn Title="Actions"
                             Tooltip=true
-                            Context="_product">
+                            Context="_context">
                 <FluentButton IconStart="@(new Icons.Regular.Size16.Edit().WithColor("white"))"
                               Appearance="Appearance.Accent"
                               Color="white"
@@ -44,7 +44,7 @@
                               Color="white"
                               BackgroundColor="@(AppColors.BtnDelete)"
                               Name="Delete"
-                              OnClick="@(()=> OnDeleteClick(_product.Id))">
+                              OnClick="@(()=> OnDeleteClick(_context.Id))">
                 </FluentButton>
             </TemplateColumn>
 

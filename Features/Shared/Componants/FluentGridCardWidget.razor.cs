@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
-using Microsoft.Fast.Components.FluentUI;
 
-namespace DiabeticsSystem.BlazorUI.Core.SharedComponanats
+namespace DiabeticsSystem.BlazorUI.Features.Shared.Componants
 {
     public partial class FluentGridCardWidget
     {

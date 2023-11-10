@@ -1,36 +1,35 @@
-﻿using DiabeticsSystem.BlazorUI.Core.Constants;
-using DiabeticsSystem.BlazorUI.Features.Product.Domain.Usecase;
-using DiabeticsSystem.BlazorUI.Features.Product.Domain.ViewModels;
+﻿using DiabeticsSystem.BlazorUI.Features.Customer.Domain.Entity;
+using DiabeticsSystem.BlazorUI.Features.Customer.Domain.Usecase;
 using Microsoft.AspNetCore.Components;
 
-namespace DiabeticsSystem.BlazorUI.Features.Product.Presentation.Logic
+namespace DiabeticsSystem.BlazorUI.Features.Customer.Presentation.Logic
 {
-    public class ProductBase : ComponentBase
+    public class CustomerBase : ComponentBase
     {
         [Inject]
-        private IProductUsecase Usecase { get; set; } = default!;
+        private ICustomerUsecase Usecase { get; set; } = default!;
         [Inject]
         private NavigationManager? Nav { get; set; }
 
         [Inject]
         public IToastService ToastService { get; set; } = default!;
 
-        public string Title { get; set; } = "Products";
+        public string Title { get; set; } = "Customers";
 
         public PaginationState pagination = new() { ItemsPerPage = 10 };
 
         public bool loading = false;
 
-        public IQueryable<ProductEntity>? Items;
+        public IQueryable<CustomerEntity>? Items;
 
         public string nameFilter = string.Empty;
 
         protected override async Task OnInitializedAsync()
         {
-            Items = await Usecase.GetAllProduct();
+            Items = await Usecase.GetAllCustomer();
         }
 
-        public IQueryable<ProductEntity>? Filtereditems =>
+        public IQueryable<CustomerEntity>? Filtereditems =>
             Items?.Where(x => x.Name.Contains(nameFilter, StringComparison.CurrentCultureIgnoreCase));
 
         public void HandleNameFilter(ChangeEventArgs args)
@@ -50,7 +49,7 @@ namespace DiabeticsSystem.BlazorUI.Features.Product.Presentation.Logic
 
         public void OnCreateClick()
         {
-            Nav!.NavigateTo(AppRouter.ProductsUpsert);
+            Nav!.NavigateTo(AppRouter.Home);
         }
 
         public void OnDeleteClick(Guid id)
