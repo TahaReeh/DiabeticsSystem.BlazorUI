@@ -16,9 +16,11 @@ namespace DiabeticsSystem.BlazorUI.Features.Customer.Presentation.Logic
 
         public string Title { get; set; } = "Customers";
 
-        public PaginationState pagination = new() { ItemsPerPage = 10 };
+        public PaginationState pagination = new() { ItemsPerPage = 7 };
 
         public bool loading = false;
+
+        public bool Overlay = false;
 
         public IQueryable<CustomerEntity>? Items;
 
@@ -26,7 +28,9 @@ namespace DiabeticsSystem.BlazorUI.Features.Customer.Presentation.Logic
 
         protected override async Task OnInitializedAsync()
         {
+            Overlay = true;
             Items = await Usecase.GetAllCustomer();
+            Overlay = false;
         }
 
         public IQueryable<CustomerEntity>? Filtereditems =>

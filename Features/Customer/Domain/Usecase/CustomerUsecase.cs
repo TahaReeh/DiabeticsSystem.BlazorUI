@@ -21,7 +21,7 @@ namespace DiabeticsSystem.BlazorUI.Features.Customer.Domain.Usecase
 
         public async Task<IQueryable<CustomerEntity>> GetAllCustomer()
         {
-            var request = await unitOfWork.CustomerRepository.GetAll(EndPoints.GetAllCustomers);
+            var request = await unitOfWork.CustomerRepository.GetAllAsync(EndPoints.GetAllCustomers);
             var dto = mapper.Map<List<CustomerEntity>>(request).AsQueryable();
             return dto;
         }

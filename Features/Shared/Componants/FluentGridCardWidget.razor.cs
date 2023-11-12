@@ -16,5 +16,11 @@ namespace DiabeticsSystem.BlazorUI.Features.Shared.Componants
         [Parameter]
         public RenderFragment? RawTemplate { get; set; }
 
+        public Align alignment = Align.Center;
+
+        public JustifyContent justification = JustifyContent.Center;
+
+        [Parameter]
+        public bool Visible { get; set; } = false;
     }
 }

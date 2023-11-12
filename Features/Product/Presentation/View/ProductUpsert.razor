@@ -1,34 +1,43 @@
 ﻿@inherits ProductUpdesrtBase
-@page "/productupsert"
+@attribute [Route(AppRouter.ProductsUpsert + "{ProductId:guid?}")]
 
-<PageTitle>Title</PageTitle>
+<PageTitle>@Title</PageTitle>
 
-<h3 class="mb-5">Title</h3>
-<div class="col-12">
+
+<div class="col-12 pt-5 mt-4">
     <div class="container">
         <FluentCard Height="" Width="" Class="shadow p-0">
             <div class="row p-0">
                 <div class="col-6 pt-4 ps-5">
-                    <h4 class="pt-3">Title</h4>
-                    <FluentNumberField Value=1 ReadOnly="true"
-                                       Class="mb-3" style="width: 70%;" Label="Number">
-                    </FluentNumberField>
-                    <FluentTextField Placeholder="Name" Class="mb-3" style="width: 70%;" Label="Name"></FluentTextField>
-                    <FluentTextArea Placeholder="Details" Class="mb-3" style="width: 70%;" Label="Details"></FluentTextArea>
-                    <FluentTextField Placeholder="Code" Class="mb-3" style="width: 70%;" Label="Code"></FluentTextField>
-                    <FluentTextField Placeholder="Company" Class="mb-3" style="width: 70%;" Label="Company"></FluentTextField>
+                    <h4 class="pt-3 pb-2">@Title</h4>
+                    <EditForm Model="ProductDetail" OnValidSubmit="HandleValidSubmit">
+                        <DataAnnotationsValidator />
+                        <FluentValidationSummary />
 
-                    <div class="mt-5">
-                        <FluentButton IconStart="@(new Icons.Regular.Size16.Save())"
-                                      Title="Save">
-                            Save
-                        </FluentButton>
-                        <FluentButton IconStart="@(new Icons.Regular.Size16.ArrowCircleLeft())"
-                                      Appearance="Appearance.Outline"
-                                      Title="Cancel">
-                            Cancel
-                        </FluentButton>
-                    </div>
+                        <FluentNumberField @bind-Value="MaxNumber" ReadOnly="true"
+                                           Class="mb-3" style="width: 70%;" Label="Number">
+                        </FluentNumberField>
+                        <FluentTextField Autofocus=true @bind-Value="ProductDetail!.Name" Placeholder="Name" Class="mb-3" style="width: 70%;" Label="Name"></FluentTextField>
+                        <FluentTextArea @bind-Value="ProductDetail.Details" Placeholder="Details" Class="mb-3" style="width: 70%;" Label="Details"></FluentTextArea>
+                        <FluentTextField @bind-Value="ProductDetail.Code" Placeholder="Code" Class="mb-3" style="width: 70%;" Label="Code"></FluentTextField>
+                        <FluentTextField @bind-Value="ProductDetail.Company" Placeholder="Company" Class="mb-3" style="width: 70%;" Label="Company"></FluentTextField>
+
+                        <div class="mt-5">
+                            <FluentButton IconStart="@(new Icons.Regular.Size16.Save())"
+                                          Type="ButtonType.Submit"
+                                          Title="Save"
+                                          Appearance="Appearance.Accent"
+                                          Style="width:100px">
+                                Save
+                            </FluentButton>
+                            <FluentButton IconStart="@(new Icons.Regular.Size16.ArrowCircleLeft())"
+                                          Appearance="Appearance.Outline"
+                                          Title="Cancel"
+                                          OnClick="@OnCancelClick">
+                                Cancel
+                            </FluentButton>
+                        </div>
+                    </EditForm>
                 </div>
                 <div class="col-6 p-0">
                     <img src="/images/fffff.jpg" style="float:right;" alt="hello" />

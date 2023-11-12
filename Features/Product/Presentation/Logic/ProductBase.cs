@@ -1,5 +1,4 @@
-﻿using DiabeticsSystem.BlazorUI.Core.Constants;
-using DiabeticsSystem.BlazorUI.Features.Product.Domain.Usecase;
+﻿using DiabeticsSystem.BlazorUI.Features.Product.Domain.Usecase;
 using DiabeticsSystem.BlazorUI.Features.Product.Domain.ViewModels;
 using Microsoft.AspNetCore.Components;
 
@@ -9,17 +8,23 @@ namespace DiabeticsSystem.BlazorUI.Features.Product.Presentation.Logic
     {
         [Inject]
         private IProductUsecase Usecase { get; set; } = default!;
+
         [Inject]
-        private NavigationManager? Nav { get; set; }
+        private NavigationManager Nav { get; set; } = default!;
 
         [Inject]
         public IToastService ToastService { get; set; } = default!;
 
+        [Inject]
+        private IDialogService DialogService { get; set; } = default!;
+
         public string Title { get; set; } = "Products";
 
-        public PaginationState pagination = new() { ItemsPerPage = 10 };
+        public PaginationState pagination = new() { ItemsPerPage = 7 };
 
         public bool loading = false;
+
+        public bool Overlay = false;
 
         public IQueryable<ProductEntity>? Items;
 
@@ -27,9 +32,15 @@ namespace DiabeticsSystem.BlazorUI.Features.Product.Presentation.Logic
 
         protected override async Task OnInitializedAsync()
         {
-            Items = await Usecase.GetAllProduct();
+            Overlay = true;
+            await FetchItemsAsync();
+            Overlay = false;
         }
 
+        public async Task FetchItemsAsync()
+        {
+            Items = await Usecase.GetAllProduct();
+        }
         public IQueryable<ProductEntity>? Filtereditems =>
             Items?.Where(x => x.Name.Contains(nameFilter, StringComparison.CurrentCultureIgnoreCase));
 
@@ -53,9 +64,34 @@ namespace DiabeticsSystem.BlazorUI.Features.Product.Presentation.Logic
             Nav!.NavigateTo(AppRouter.ProductsUpsert);
         }
 
-        public void OnDeleteClick(Guid id)
+        public async Task OnDeleteClick(Guid id)
         {
-            ShowToast($"ID: {id}");
+            var dialog = await DialogService.ShowMessageBoxAsync(new DialogParameters<MessageBoxContent>()
+            {
+                Content = new()
+                {
+                    Title = "Delete Product",
+                    MarkupMessage = new MarkupString("Do you want to <strong>Delete</strong> this product?"),
+                    Icon = new Icons.Regular.Size24.Delete(),
+                    IconColor = Color.Error,
+                },
+                PrimaryAction = "Yes",
+                SecondaryAction = "No",
+                Width = "300px",
+            });
+            var result = await dialog.Result;
+            
+            if (!result.Cancelled)
+            {
+                await Usecase.RemoveProduct(id);
+                await FetchItemsAsync();
+                ShowToast($"Product deleted successfuly");
+            }
+        }
+
+        public void OnEditClick(Guid? ProductId)
+        {
+            Nav!.NavigateTo($"{AppRouter.ProductsUpsert}{ProductId}");
         }
 
         void ShowToast(string message)
