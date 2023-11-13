@@ -1,4 +1,5 @@
-﻿using DiabeticsSystem.BlazorUI.Features.Customer.Domain.Entity;
+﻿using DiabeticsSystem.BlazorUI.Core.Services;
+using DiabeticsSystem.BlazorUI.Features.Customer.Domain.Entity;
 using DiabeticsSystem.BlazorUI.Features.Customer.Domain.Usecase;
 using Microsoft.AspNetCore.Components;
 
@@ -13,6 +14,9 @@ namespace DiabeticsSystem.BlazorUI.Features.Customer.Presentation.Logic
 
         [Inject]
         public IToastService ToastService { get; set; } = default!;
+
+        [Inject]
+        private IDialogService DialogService { get; set; } = default!;
 
         public string Title { get; set; } = "Customers";
 
@@ -29,8 +33,13 @@ namespace DiabeticsSystem.BlazorUI.Features.Customer.Presentation.Logic
         protected override async Task OnInitializedAsync()
         {
             Overlay = true;
-            Items = await Usecase.GetAllCustomer();
+            await FetchItemsAsync();
             Overlay = false;
+        }
+
+        public async Task FetchItemsAsync()
+        {
+            Items = await Usecase.GetAllCustomer();
         }
 
         public IQueryable<CustomerEntity>? Filtereditems =>
@@ -53,20 +62,25 @@ namespace DiabeticsSystem.BlazorUI.Features.Customer.Presentation.Logic
 
         public void OnCreateClick()
         {
-            Nav!.NavigateTo(AppRouter.Home);
+            Nav!.NavigateTo(AppRouter.CustomerUpsert);
         }
 
-        public void OnDeleteClick(Guid id)
+        public async Task OnDeleteClick(Guid id)
         {
-            ShowToast($"ID: {id}");
+            var result = await AppDialogs.MessageBoxDelete("Customer", DialogService);
+
+            if (!result.Cancelled)
+            {
+                await Usecase.RemoveCustomer(id);
+                await FetchItemsAsync();
+                AppToast.ShowSuccessToast("Customer deleted", ToastService);
+            }
         }
 
-        void ShowToast(string message)
+        public void OnEditClick(Guid? CustomerId)
         {
-            ToastService.ShowToast(
-                ToastIntent.Success,
-                message
-            );
+            Nav!.NavigateTo($"{AppRouter.CustomerUpsert}{CustomerId}");
         }
+
     }
 }

@@ -1,0 +1,62 @@
+﻿@inherits CustomerUpdesrtBase
+@attribute [Route(AppRouter.CustomerUpsert + "{CustomerId:guid?}")]
+
+<PageTitle>@Title</PageTitle>
+
+
+<div class="col-12 pt-5 mt-4">
+    <div class="container">
+        <FluentCard Height="" Width="" Class="shadow ps-5">
+            <h4 class="pt-3 pb-2">@Title</h4>
+            <EditForm Model="CustomerDetail" OnValidSubmit="HandleValidSubmit">
+                <DataAnnotationsValidator />
+                <FluentValidationSummary />
+                <div class="row">
+                    <div class="col-6">
+                        <FluentNumberField @bind-Value="MaxNumber" ReadOnly="true"
+                                           Class="mb-3" style="width: 70%;" Label="Number">
+                        </FluentNumberField>
+                        <FluentTextField Autofocus=true @bind-Value="CustomerDetail!.Name" Placeholder="Name" Class="mb-3" Style="width: 70%;" Label="Name"></FluentTextField>
+                        <FluentTextField TextFieldType="TextFieldType.Tel" @bind-Value="CustomerDetail.Phone" Placeholder="Phone" Class="mb-3" Style="width: 70%;" Label="Phone"></FluentTextField>
+                        <FluentTextField TextFieldType="TextFieldType.Tel" @bind-Value="CustomerDetail.SecondPhone" Placeholder="Second Phone" Class="mb-3" Style="width: 70%;" Label="Second Phone"></FluentTextField>
+                        <FluentTextField TextFieldType="TextFieldType.Email" @bind-Value="CustomerDetail.Email" Placeholder="Email" Class="mb-3" Style="width: 70%;" Label="Email"></FluentTextField>
+                    </div>
+                    <div class="col-6">
+                        <FluentTextField @bind-Value="CustomerDetail.Address" Placeholder="Address" Class="mb-3" Style="width: 70%;" Label="Address"></FluentTextField>
+                        <FluentTextField @bind-Value="CustomerDetail.PersonalId" Placeholder="Personal Id" Class="mb-3" Style="width: 70%;" Label="Personal Id"></FluentTextField>
+                        <FluentDatePicker @bind-Value="CustomerDetail.BirthDate" Class="mb-3" Style="width: 70%;" Label="BirthDate" />
+                        <FluentSelect TOption="int"
+                                      @bind-Value="@FluentSelectIntValue"
+                                      Class="mb-3"
+                                      Style="width: 70%;"
+                                      Label="Gender">
+                            <FluentOption Value="1">
+                                Male
+                                <FluentIcon Icon="Icons.Regular.Size20.Person" Color="@Color.Neutral" Slot="start" />
+                            </FluentOption>
+                            <FluentOption Value="2">
+                                Female
+                                <FluentIcon Icon="Icons.Regular.Size20.PersonCircle" Color="@Color.Neutral" Slot="start" />
+                            </FluentOption>
+                        </FluentSelect>
+                    </div>
+                </div>
+                <div class="mt-5 pb-3">
+                    <FluentButton IconStart="@(new Icons.Regular.Size16.Save())"
+                                  Type="ButtonType.Submit"
+                                  Title="Save"
+                                  Appearance="Appearance.Accent"
+                                  Style="width:100px">
+                        Save
+                    </FluentButton>
+                    <FluentButton IconStart="@(new Icons.Regular.Size16.ArrowCircleLeft())"
+                                  Appearance="Appearance.Outline"
+                                  Title="Cancel"
+                                  OnClick="@OnCancelClick">
+                        Cancel
+                    </FluentButton>
+                </div>
+            </EditForm>
+        </FluentCard>
+    </div>
+</div>

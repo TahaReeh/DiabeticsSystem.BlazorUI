@@ -10,7 +10,6 @@
     <Compile Remove="Core\BaseClient\**" />
     <Compile Remove="Core\DataStore\**" />
     <Compile Remove="Core\DI\**" />
-    <Compile Remove="Core\Enums\**" />
     <Compile Remove="Core\Exceptions\**" />
     <Compile Remove="Core\Style\**" />
     <Compile Remove="Core\Utility\**" />
@@ -21,7 +20,6 @@
     <Content Remove="Core\BaseClient\**" />
     <Content Remove="Core\DataStore\**" />
     <Content Remove="Core\DI\**" />
-    <Content Remove="Core\Enums\**" />
     <Content Remove="Core\Exceptions\**" />
     <Content Remove="Core\Style\**" />
     <Content Remove="Core\Utility\**" />
@@ -32,7 +30,6 @@
     <EmbeddedResource Remove="Core\BaseClient\**" />
     <EmbeddedResource Remove="Core\DataStore\**" />
     <EmbeddedResource Remove="Core\DI\**" />
-    <EmbeddedResource Remove="Core\Enums\**" />
     <EmbeddedResource Remove="Core\Exceptions\**" />
     <EmbeddedResource Remove="Core\Style\**" />
     <EmbeddedResource Remove="Core\Utility\**" />
@@ -43,7 +40,6 @@
     <None Remove="Core\BaseClient\**" />
     <None Remove="Core\DataStore\**" />
     <None Remove="Core\DI\**" />
-    <None Remove="Core\Enums\**" />
     <None Remove="Core\Exceptions\**" />
     <None Remove="Core\Style\**" />
     <None Remove="Core\Utility\**" />

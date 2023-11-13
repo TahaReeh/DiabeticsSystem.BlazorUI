@@ -37,12 +37,12 @@ namespace DiabeticsSystem.BlazorUI.Features.Product.Domain.Usecase
 
         public async Task<string> AddProduct(ProductModel entity)
         {
-            return await unitOfWork.ProductRepository.AddAsync(EndPoints.CreateProduct, entity);
+            return await unitOfWork.ProductRepository.AddAsync(EndPoints.AddProduct, entity);
         }
 
         public async Task RemoveProduct(Guid? id)
         {
-            await unitOfWork.ProductRepository.RemoveAsync(EndPoints.DeleteProduct, id);
+            await unitOfWork.ProductRepository.RemoveAsync(EndPoints.RemoveProduct, id);
         }
 
         public async Task UpdateProduct(ProductModel entity)

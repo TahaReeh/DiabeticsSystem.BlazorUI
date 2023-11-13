@@ -1,5 +1,5 @@
 ﻿@inherits CustomerBase
-@page "/customer"
+@attribute [Route(AppRouter.Customer)]
 
 <PageTitle>@Title</PageTitle>
 
@@ -39,7 +39,8 @@
                 <FluentButton IconStart="@(new Icons.Regular.Size16.Edit().WithColor("white"))"
                               Appearance="Appearance.Accent"
                               Color="white"
-                              Name="BtnEdit">
+                              Name="BtnEdit"
+                              OnClick="@(()=> OnEditClick(_context.Id))">
                 </FluentButton>
                 <FluentButton IconStart="@(new Icons.Regular.Size16.Delete().WithColor("white"))"
                               Color="white"

@@ -1,4 +1,5 @@
-﻿using DiabeticsSystem.BlazorUI.Features.Product.Data.Model;
+﻿using DiabeticsSystem.BlazorUI.Core.Services;
+using DiabeticsSystem.BlazorUI.Features.Product.Data.Model;
 using DiabeticsSystem.BlazorUI.Features.Product.Domain.Usecase;
 using Microsoft.AspNetCore.Components;
 
@@ -27,7 +28,7 @@ namespace DiabeticsSystem.BlazorUI.Features.Product.Presentation.Logic
         async Task GetMaxNumber()
         {
             var obj = await Usecase.GetAllProduct();
-            MaxNumber = obj.Max(x => Convert.ToInt32(x.Number )) + 1;
+            MaxNumber = obj.Max(x => Convert.ToInt32(x.Number)) + 1;
         }
 
         protected override async Task OnParametersSetAsync()
@@ -72,12 +73,11 @@ namespace DiabeticsSystem.BlazorUI.Features.Product.Presentation.Logic
             if (ProductDetail!.Id == Guid.Empty)
             {
                 ProductDetail.Number = MaxNumber.ToString();
-               var newId = await Usecase.AddProduct(ProductDetail);
+                var newId = await Usecase.AddProduct(ProductDetail);
                 if (newId != string.Empty)
                 {
-                   ToastService.ShowToast(
-                     ToastIntent.Success,
-                    "Product created successfuly");
+                    AppToast.ShowSuccessToast("Product created", ToastService);
+
                     ProductDetail = new()
                     {
                         Name = string.Empty,
@@ -89,18 +89,14 @@ namespace DiabeticsSystem.BlazorUI.Features.Product.Presentation.Logic
                 }
                 else
                 {
-                    ToastService.ShowToast(
-                     ToastIntent.Error,
-                    "Somthing went wrong!");
+                    AppToast.ShowErrorToast(ToastService);
                 }
             }
             else
             {
                 await Usecase.UpdateProduct(ProductDetail);
                 Nav.NavigateTo(AppRouter.Products);
-                ToastService.ShowToast(
-                   ToastIntent.Success,
-                  "Product updated successfuly");
+                AppToast.ShowSuccessToast("Product updated", ToastService);
             }
 
         }

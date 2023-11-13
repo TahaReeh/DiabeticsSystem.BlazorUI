@@ -1,3 +1,4 @@
+using DiabeticsSystem.BlazorUI.Core.Services;
 using DiabeticsSystem.BlazorUI.Features.Customer.Domain.Usecase;
 using DiabeticsSystem.BlazorUI.Features.Product.Domain.Usecase;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
@@ -20,5 +21,4 @@ builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IProductUsecase, ProductUsecase>();
 builder.Services.AddScoped<ICustomerUsecase, CustomerUsecase>();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-
 await builder.Build().RunAsync();

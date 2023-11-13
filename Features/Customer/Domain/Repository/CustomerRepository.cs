@@ -1,5 +1,6 @@
 ﻿using DiabeticsSystem.BlazorUI.Features.Customer.Data.Contract;
 using DiabeticsSystem.BlazorUI.Features.Customer.Data.Model;
+using System.Net.Http.Json;
 
 namespace DiabeticsSystem.BlazorUI.Features.Customer.Domain.Repository
 {
@@ -7,6 +8,11 @@ namespace DiabeticsSystem.BlazorUI.Features.Customer.Domain.Repository
     {
         public CustomerRepository(HttpClient http) : base(http)
         {
+        }
+
+        public async Task UpdateAsync(string route, CustomerModel entity)
+        {
+            await _http.PutAsJsonAsync(route, entity);
         }
     }
 }

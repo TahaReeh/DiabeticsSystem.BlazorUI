@@ -1,6 +1,8 @@
-﻿using DiabeticsSystem.BlazorUI.Features.Product.Domain.Usecase;
+﻿using DiabeticsSystem.BlazorUI.Core.Services;
+using DiabeticsSystem.BlazorUI.Features.Product.Domain.Usecase;
 using DiabeticsSystem.BlazorUI.Features.Product.Domain.ViewModels;
 using Microsoft.AspNetCore.Components;
+using Microsoft.Fast.Components.FluentUI;
 
 namespace DiabeticsSystem.BlazorUI.Features.Product.Presentation.Logic
 {
@@ -66,40 +68,19 @@ namespace DiabeticsSystem.BlazorUI.Features.Product.Presentation.Logic
 
         public async Task OnDeleteClick(Guid id)
         {
-            var dialog = await DialogService.ShowMessageBoxAsync(new DialogParameters<MessageBoxContent>()
-            {
-                Content = new()
-                {
-                    Title = "Delete Product",
-                    MarkupMessage = new MarkupString("Do you want to <strong>Delete</strong> this product?"),
-                    Icon = new Icons.Regular.Size24.Delete(),
-                    IconColor = Color.Error,
-                },
-                PrimaryAction = "Yes",
-                SecondaryAction = "No",
-                Width = "300px",
-            });
-            var result = await dialog.Result;
-            
+            var result = await AppDialogs.MessageBoxDelete("Product", DialogService);
+
             if (!result.Cancelled)
             {
                 await Usecase.RemoveProduct(id);
                 await FetchItemsAsync();
-                ShowToast($"Product deleted successfuly");
+                AppToast.ShowSuccessToast("Product deleted", ToastService);
             }
         }
 
         public void OnEditClick(Guid? ProductId)
         {
             Nav!.NavigateTo($"{AppRouter.ProductsUpsert}{ProductId}");
-        }
-
-        void ShowToast(string message)
-        {
-            ToastService.ShowToast(
-                ToastIntent.Success,
-                message
-            );
         }
     }
 }
