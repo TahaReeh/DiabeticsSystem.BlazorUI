@@ -1,0 +1,50 @@
+﻿@inherits PatientMovementBase
+@attribute [Route(AppRouter.PatientMovement)]
+
+<PageTitle>@Title</PageTitle>
+
+<h3 class="mb-5">@Title</h3>
+
+<FluentGridCardWidget Title="@Title"
+                      OnBtnMainClick="@OnCreateClick"
+                      Visible="@Overlay">
+    <RawTemplate>
+        <FluentDataGrid Items="@Filtereditems"
+                        ResizableColumns=false
+                        Pagination="@pagination"
+                        GridTemplateColumns="0.4fr 0.4fr 0.3fr 0.1fr"
+                        Style="height: 405px; overflow:auto;">
+            <PropertyColumn Property="@(p => p.Product.Name)" Sortable="true" Title="Product Name" />
+            <PropertyColumn Property="@(c => c.Customer.Name)"
+                            Sortable="true"
+                            Tooltip="true"
+                            Title="Customer Name">
+                <ColumnOptions>
+                    <div class="search-box">
+                        <FluentSearch type="search"
+                                      Autofocus=true
+                        @bind-Value=nameFilter
+                        @oninput="HandleNameFilter"
+                        @bind-Value:after="HandleClear"
+                                      Placeholder="Search by Name..." />
+                    </div>
+                </ColumnOptions>
+            </PropertyColumn>
+            <PropertyColumn Property="@(p => p.CreatedDate)" Sortable="true" Title="Created Date" />
+
+            <TemplateColumn Title="Actions"
+                            Tooltip=true
+                            Context="_context">
+                <FluentButton IconStart="@(new Icons.Regular.Size16.Delete().WithColor("white"))"
+                              BackgroundColor="@(AppColors.BtnDelete)"
+                              Name="Delete"
+                              OnClick="@(()=> OnDeleteClick(_context.Id))">
+                </FluentButton>
+            </TemplateColumn>
+        </FluentDataGrid>
+
+
+    </RawTemplate>
+
+</FluentGridCardWidget>
+

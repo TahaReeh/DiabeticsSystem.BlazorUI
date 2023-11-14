@@ -17,5 +17,12 @@
         public const string UpdateCustomer = "Customer/UpdateCustomer";
         public const string RemoveCustomer = "Customer/DeleteCustomer?id=";
         #endregion
+
+        #region PatientMovement
+        public const string GetAllPatientMovement = "PatientMovment/GetAllPatientsMovments";
+        public const string GetPatientMovement = "PatientMovment/GetPatientMovmentByCustomer?id=";
+        public const string AddPatientMovement = "PatientMovment/CreatePatientMovment";
+        public const string RemovePatientMovement = "PatientMovment/DeletePatientMovment?id=";
+        #endregion
     }
 }

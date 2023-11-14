@@ -7,23 +7,23 @@
                        Icon="@(new Icons.Regular.Size16.Home())" IconColor="Color.Accent">
             Home
         </FluentNavLink>
-        <FluentNavLink Href="product"
+        <FluentNavLink Href="@AppRouter.Products"
                        Icon="@(new Icons.Regular.Size16.Apps())" IconColor="Color.Accent">
             Product
         </FluentNavLink>
-        <FluentNavLink Href="customer"
+        <FluentNavLink Href="@AppRouter.Customer"
                        Icon="@(new Icons.Regular.Size16.People())" IconColor="Color.Accent">
             Customer
         </FluentNavLink>
-        <FluentNavLink Href=""
-                       Icon="@(new Icons.Regular.Size16.PersonBoard())" IconColor="Color.Accent">
-            Patient Movement
-        </FluentNavLink>
-        <FluentNavGroup Title="Test Group"
-                        Icon="@(new Icons.Regular.Size16.Apps())" IconColor="Color.Accent">
-            <FluentNavLink Href=""
-                           Icon="@(new Icons.Regular.Size16.AppsAddIn())" IconColor="Color.Accent">
-                Test item
+        <FluentNavGroup Title="Patient Movement"
+                        Icon="@(new Icons.Regular.Size16.PersonBoard())" IconColor="Color.Accent">
+            <FluentNavLink Href="@AppRouter.PatientMovement"
+                           Icon="@(new Icons.Regular.Size16.PeopleList())" IconColor="Color.Accent">
+                All Patients
+            </FluentNavLink>
+            <FluentNavLink Href="@AppRouter.PatientMovementById"
+                           Icon="@(new Icons.Regular.Size16.PersonSearch())" IconColor="Color.Accent">
+                Patient
             </FluentNavLink>
         </FluentNavGroup>
     </FluentNavMenu>

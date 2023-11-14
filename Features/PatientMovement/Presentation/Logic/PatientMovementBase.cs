@@ -1,14 +1,16 @@
 ﻿using DiabeticsSystem.BlazorUI.Core.Services;
-using DiabeticsSystem.BlazorUI.Features.Product.Domain.Usecase;
-using DiabeticsSystem.BlazorUI.Features.Product.Domain.ViewModels;
+using DiabeticsSystem.BlazorUI.Features.PatientMovement.Data.Model;
+using DiabeticsSystem.BlazorUI.Features.PatientMovement.Domain.Usecase;
 using Microsoft.AspNetCore.Components;
+using System.Collections.Generic;
+using System.Net.Http.Headers;
 
-namespace DiabeticsSystem.BlazorUI.Features.Product.Presentation.Logic
+namespace DiabeticsSystem.BlazorUI.Features.PatientMovement.Presentation.Logic
 {
-    public class ProductBase : ComponentBase
+    public class PatientMovementBase : ComponentBase
     {
         [Inject]
-        private IProductUsecase Usecase { get; set; } = default!;
+        private IPatientMovementUsecase Usecase { get; set; } = default!;
 
         [Inject]
         private NavigationManager Nav { get; set; } = default!;
@@ -19,7 +21,7 @@ namespace DiabeticsSystem.BlazorUI.Features.Product.Presentation.Logic
         [Inject]
         private IDialogService DialogService { get; set; } = default!;
 
-        public string Title { get; set; } = "Products";
+        public string Title { get; set; } = "Patient Movement";
 
         public PaginationState pagination = new() { ItemsPerPage = 7 };
 
@@ -27,7 +29,7 @@ namespace DiabeticsSystem.BlazorUI.Features.Product.Presentation.Logic
 
         public bool Overlay = false;
 
-        public IQueryable<ProductEntity>? Items;
+        public IQueryable<PatientMovementModel>? Items;
 
         public string nameFilter = string.Empty;
 
@@ -40,10 +42,11 @@ namespace DiabeticsSystem.BlazorUI.Features.Product.Presentation.Logic
 
         public async Task FetchItemsAsync()
         {
-            Items = await Usecase.GetAllProduct();
+            Items = await Usecase.GetAllPatientMovement();
+            
         }
-        public IQueryable<ProductEntity>? Filtereditems =>
-            Items?.Where(x => x.Name.Contains(nameFilter, StringComparison.CurrentCultureIgnoreCase));
+        public IQueryable<PatientMovementModel>? Filtereditems =>
+            Items?.Where(x => x.Customer.Name.Contains(nameFilter, StringComparison.CurrentCultureIgnoreCase));
 
         public void HandleNameFilter(ChangeEventArgs args)
         {
@@ -62,24 +65,20 @@ namespace DiabeticsSystem.BlazorUI.Features.Product.Presentation.Logic
 
         public void OnCreateClick()
         {
-            Nav!.NavigateTo(AppRouter.ProductsUpsert);
+            //Nav!.NavigateTo(AppRouter.ProductsUpsert);
         }
 
         public async Task OnDeleteClick(Guid id)
         {
-            var result = await AppDialogs.MessageBoxDelete("Product", DialogService);
+            var result = await AppDialogs.MessageBoxDelete("Patient Movement", DialogService);
 
             if (!result.Cancelled)
             {
-                await Usecase.RemoveProduct(id);
+                await Usecase.RemovePatientMovement(id);
                 await FetchItemsAsync();
-                AppToast.ShowSuccessToast("Product deleted", ToastService);
+                AppToast.ShowSuccessToast("Movement deleted", ToastService);
             }
         }
 
-        public void OnEditClick(Guid? ProductId)
-        {
-            Nav!.NavigateTo($"{AppRouter.ProductsUpsert}{ProductId}");
-        }
     }
 }

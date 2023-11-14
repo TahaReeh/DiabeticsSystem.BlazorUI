@@ -6,7 +6,8 @@
         public const string Products = "/product";
         public const string ProductsUpsert = "/productupsert/";
         public const string Customer = "/customer";
-        public const string CustomerUpsert = "/customerpsert/";
-
+        public const string CustomerUpsert = "/customerupsert/";
+        public const string PatientMovement = "/patientmovement/";
+        public const string PatientMovementById = "/patientmovementbyid/";
     }
 }
