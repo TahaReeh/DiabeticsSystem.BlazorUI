@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using DiabeticsSystem.BlazorUI.Features.PatientMovement.Data.Model;
+using DiabeticsSystem.BlazorUI.Features.PatientMovement.Domain.Entity;
 using DiabeticsSystem.BlazorUI.Features.Product.Data.Model;
 using DiabeticsSystem.BlazorUI.Features.Product.Domain.ViewModels;
+using Microsoft.Fast.Components.FluentUI.DesignTokens;
 using System.Linq;
 
 namespace DiabeticsSystem.BlazorUI.Features.PatientMovement.Domain.Usecase
@@ -9,19 +11,14 @@ namespace DiabeticsSystem.BlazorUI.Features.PatientMovement.Domain.Usecase
     public interface IPatientMovementUsecase
     {
         Task<IQueryable<PatientMovementModel>> GetAllPatientMovement();
-        Task<PatientMovementModel> GetPatientMovement(Guid? id);
-        Task<string> AddPatientMovement(PatientMovementModel product);
+        Task<IQueryable<PatientMovementModel>> GetPatientMovementByCustomer(Guid? id);
+        Task<string> AddPatientMovement(CreatePatientMovementEntity entity);
         Task RemovePatientMovement(Guid? id);
     }
 
-    public class PatientMovementUsecase : IPatientMovementUsecase
+    public class PatientMovementUsecase(IUnitOfWork _unitOfWork) : IPatientMovementUsecase
     {
-        private readonly IUnitOfWork unitOfWork;
-
-        public PatientMovementUsecase(IUnitOfWork _unitOfWork, IMapper _mapper)
-        {
-            unitOfWork = _unitOfWork;
-        }
+        private readonly IUnitOfWork unitOfWork = _unitOfWork;
 
         public async Task<IQueryable<PatientMovementModel>> GetAllPatientMovement()
         {
@@ -30,14 +27,16 @@ namespace DiabeticsSystem.BlazorUI.Features.PatientMovement.Domain.Usecase
             return dto;
         }
 
-        public Task<PatientMovementModel> GetPatientMovement(Guid? id)
+        public async Task<IQueryable<PatientMovementModel>> GetPatientMovementByCustomer(Guid? id)
         {
-            throw new NotImplementedException();
+            var request = await unitOfWork.PatientMovementRepository.GetPatientByCustomer(EndPoints.GetPatientMovement,id);
+            var dto = request.AsQueryable();
+            return dto;
         }
 
-        public Task<string> AddPatientMovement(PatientMovementModel product)
+        public async Task<string> AddPatientMovement(CreatePatientMovementEntity entity)
         {
-            throw new NotImplementedException();
+            return await unitOfWork.PatientMovementRepository.AddTest(EndPoints.AddPatientMovement, entity);
         }
 
         public async Task RemovePatientMovement(Guid? id)

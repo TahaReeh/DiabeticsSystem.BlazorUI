@@ -8,6 +8,6 @@
         public const string Customer = "/customer";
         public const string CustomerUpsert = "/customerupsert/";
         public const string PatientMovement = "/patientmovement/";
-        public const string PatientMovementById = "/patientmovementbyid/";
+        public const string PatientMovementByCustomer = "/patientmovementbycustomer";
     }
 }

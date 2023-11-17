@@ -7,7 +7,8 @@
 
 <FluentGridCardWidget Title="@Title"
                       OnBtnMainClick="@OnCreateClick"
-                      Visible="@Overlay">
+                      Visible="@Overlay"
+                      IncludeMainBtn=true>
     <RawTemplate>
         <FluentDataGrid Items="@Filtereditems"
                         ResizableColumns=false
@@ -24,9 +25,9 @@
                     <div class="search-box">
                         <FluentSearch type="search"
                                       Autofocus=true
-                        @bind-Value=nameFilter
-                        @oninput="HandleNameFilter"
-                        @bind-Value:after="HandleClear"
+                                      @bind-Value=nameFilter
+                                      @oninput="HandleNameFilter"
+                                      @bind-Value:after="HandleClear"
                                       Placeholder="Search by Name..." />
                     </div>
                 </ColumnOptions>

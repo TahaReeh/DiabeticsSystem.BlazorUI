@@ -1,0 +1,60 @@
+﻿@inherits CreateRecordDialogBase
+@implements IDialogContentComponent
+
+@* Header *@
+<FluentDialogHeader ShowDismiss="true">
+    <FluentStack VerticalAlignment="VerticalAlignment.Center">
+        <FluentIcon Value="@(new Icons.Regular.Size24.WindowApps())" />
+        <FluentLabel Typo="Typography.PaneHeader">
+            @Dialog.Instance.Parameters.Title
+        </FluentLabel>
+    </FluentStack>
+</FluentDialogHeader>
+
+@* Footer *@
+<FluentDialogFooter>
+    <FluentButton Appearance="Appearance.Accent"
+                  OnClick="@(()=>SaveDialog(Dialog))"
+                  IconStart="@(new Icons.Regular.Size16.AddCircle())">
+        Save
+    </FluentButton>
+
+    <FluentButton Appearance="Appearance.Outline" OnClick="@CloseDialog">Cancel</FluentButton>
+</FluentDialogFooter>
+
+@* Body *@
+<FluentDialogBody>
+   
+    <FluentCombobox Label="Patients List"
+                    Placeholder="Select Patient"
+                    Class=" mb-3"
+                    Items="CustomersList"
+                    OptionValue="@(p=>p?.Id.ToString())"
+                    OptionText="@(p=>p?.Name)"
+                    @bind-SelectedOption="@SelectedCustomer" />
+
+    <FluentCombobox Label="Product List"
+                    Placeholder="Select Product"
+                    Class=" mb-3"
+                    Items="ProductList"
+                    OptionValue="@(p=>p.Id.ToString())"
+                    OptionText="@(p=>p.Name)"
+                    @bind-SelectedOption="@SelectedProduct" />
+
+    <FluentTextField Placeholder="Barcode"
+                     Class=" mb-3"
+                     Label="Barcode"
+                     @bind-Value="@NewBarcode" />
+
+</FluentDialogBody>
+
+
+@code {
+    [CascadingParameter]
+    public FluentDialog Dialog { get; set; } = default!;
+
+    private void CloseDialog()
+    {
+        Dialog.CancelAsync();
+    }
+}

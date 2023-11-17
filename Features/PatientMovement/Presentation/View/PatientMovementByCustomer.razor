@@ -1,24 +1,49 @@
-﻿@inherits PatientMovementBase
-@attribute [Route(AppRouter.PatientMovement)]
+﻿@inherits PatientMovementByCustomerBase
+@attribute [Route(AppRouter.PatientMovementByCustomer)]
 
 <PageTitle>@Title</PageTitle>
 
     <h3 class="mb-5">@Title</h3>
 
+<FluentCombobox Label="Patients List"
+                Placeholder="Select Patient"
+                Class=" mb-3"
+                Items="CustomersList"
+                OptionValue="@(p=>p?.Id.ToString())"
+                OptionText="@(p=>p?.Name)"
+                @bind-SelectedOption="@SelectedCustomer"
+                ValueChanged="@(() => FetchItemsAsync())" />
+
+@if (SelectedCustomer is not null)
+{
+    <FluentTextField @bind-Value="@SelectedCustomer.Phone"
+                     Placeholder="Phone"
+                     Class=" mb-4"
+                     ReadOnly=true
+                     Label="Phone" />
+}
+
+
 <FluentGridCardWidget Title="@Title"
-                      OnBtnMainClick="@OnCreateClick"
                       Visible="@Overlay"
-                      IncludeMainBtn=true>
+                      IncludeMainBtn=false>
     <RawTemplate>
-        <FluentDataGrid Items="@Filtereditems"
+
+        <FluentDataGrid Items="@(Filtereditems)"
                         ResizableColumns=false
                         Pagination="@pagination"
                         GridTemplateColumns="0.4fr 0.4fr 0.3fr 0.1fr"
                         Style="height: 405px; overflow:auto;">
-            <PropertyColumn Property="@(c => c.Customer.Name)"
+            <PropertyColumn Property="@(c => c.Barcode)"
                             Sortable="true"
                             Tooltip="true"
-                            Title="Customer Name">
+                            Title="Product Code">
+            </PropertyColumn>
+            <PropertyColumn Property="@(p => p.Customer.Name)" Sortable="true" Title="Customer Name" />
+            <PropertyColumn Property="@(p => p.CreatedDate)"
+                            Sortable="true"
+                            Title="Created Date"
+                            Format="dd/MM/yyyy">
                 <ColumnOptions>
                     <div class="search-box">
                         <FluentSearch type="search"
@@ -26,12 +51,10 @@
                                       @bind-Value=nameFilter
                                       @oninput="HandleNameFilter"
                                       @bind-Value:after="HandleClear"
-                                      Placeholder="Search by Name..." />
+                                      Placeholder="Search by date..." />
                     </div>
                 </ColumnOptions>
             </PropertyColumn>
-            <PropertyColumn Property="@(p => p.Product.Name)" Sortable="true" Title="Product Name" />
-            <PropertyColumn Property="@(p => p.CreatedDate)" Sortable="true" Title="Created Date" Format="dd/MM/yyyy" />
 
             <TemplateColumn Title="Actions"
                             Tooltip=true

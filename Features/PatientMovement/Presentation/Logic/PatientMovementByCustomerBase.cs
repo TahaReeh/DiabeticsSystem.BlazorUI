@@ -2,19 +2,19 @@
 using DiabeticsSystem.BlazorUI.Features.Customer.Domain.Entity;
 using DiabeticsSystem.BlazorUI.Features.Customer.Domain.Usecase;
 using DiabeticsSystem.BlazorUI.Features.PatientMovement.Data.Model;
-using DiabeticsSystem.BlazorUI.Features.PatientMovement.Domain.Entity;
 using DiabeticsSystem.BlazorUI.Features.PatientMovement.Domain.Usecase;
 using DiabeticsSystem.BlazorUI.Features.PatientMovement.Presentation.Componant;
-using DiabeticsSystem.BlazorUI.Features.Product.Domain.Usecase;
-using DiabeticsSystem.BlazorUI.Features.Product.Domain.ViewModels;
 using Microsoft.AspNetCore.Components;
 
 namespace DiabeticsSystem.BlazorUI.Features.PatientMovement.Presentation.Logic
 {
-    public class PatientMovementBase : ComponentBase
+    public class PatientMovementByCustomerBase : FluentComponentBase
     {
         [Inject]
         private IPatientMovementUsecase Usecase { get; set; } = default!;
+
+        [Inject]
+        private ICustomerUsecase CustomerUsecase { get; set; } = default!;
 
         [Inject]
         private IToastService ToastService { get; set; } = default!;
@@ -30,25 +30,47 @@ namespace DiabeticsSystem.BlazorUI.Features.PatientMovement.Presentation.Logic
 
         public bool Overlay = false;
 
-        public IQueryable<PatientMovementModel>? Items;
+        public IQueryable<PatientMovementModel>? Items { get; set; }
+
+        public IQueryable<CustomerEntity>? CustomersList { get; set; }
+
+        public CustomerEntity? SelectedCustomer { get; set; }
+        public string SelectedValue { get; set; } = string.Empty;
 
         public string nameFilter = string.Empty;
 
         protected override async Task OnInitializedAsync()
         {
-            Overlay = true;
-            await FetchItemsAsync();
-            Overlay = false;
-
+            await FetchCustomersAsync();
+        }
+        public async Task FetchCustomersAsync()
+        {
+            CustomersList = await CustomerUsecase.GetAllCustomer();
         }
 
         public async Task FetchItemsAsync()
         {
-            Items = await Usecase.GetAllPatientMovement();
-
+            if (SelectedCustomer is not null)
+            {
+                try
+                {
+                    Overlay = true;
+                    Items = await Usecase.GetPatientMovementByCustomer(SelectedCustomer?.Id);
+                    Overlay = false;
+                }
+                catch (Exception e)
+                {
+                    Overlay = false;
+                    AppToast.ShowCustomErrorToast(e.Message, ToastService);
+                }
+            }
+            else
+            {
+                Items = Enumerable.Empty<PatientMovementModel>().AsQueryable();
+            }
         }
         public IQueryable<PatientMovementModel>? Filtereditems =>
-            Items?.Where(x => x.Customer.Name.Contains(nameFilter, StringComparison.CurrentCultureIgnoreCase));
+            Items?.Where(x => x.CreatedDate.ToString().Contains(nameFilter, StringComparison.CurrentCultureIgnoreCase));
 
         public void HandleNameFilter(ChangeEventArgs args)
         {
@@ -76,22 +98,5 @@ namespace DiabeticsSystem.BlazorUI.Features.PatientMovement.Presentation.Logic
                 AppToast.ShowSuccessToast("Movement deleted", ToastService);
             }
         }
-        public async Task OnCreateClick()
-        {
-           var dialog = await DialogService.ShowDialogAsync<CreateRecordDialog>(new DialogParameters()
-            {
-                Height = "240px",
-                Title = $"Create new record",
-                PreventDismissOnOverlayClick = true,
-                PreventScroll = true,
-            });
-            var result = await dialog.Result;
-            if (!result.Cancelled)
-            {
-                await FetchItemsAsync();
-                AppToast.ShowSuccessToast("Record created", ToastService);
-            }
-        }
-
     }
 }
