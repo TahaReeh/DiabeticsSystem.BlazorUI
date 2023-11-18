@@ -25,6 +25,8 @@ namespace DiabeticsSystem.BlazorUI.Features.Product.Presentation.Logic
 
         public string Title { get; set; } = string.Empty;
 
+        public bool loading = false;
+
         async Task GetMaxNumber()
         {
             var obj = await Usecase.GetAllProduct();
@@ -70,6 +72,7 @@ namespace DiabeticsSystem.BlazorUI.Features.Product.Presentation.Logic
 
         public async Task HandleValidSubmit()
         {
+            loading = true;
             if (ProductDetail!.Id == Guid.Empty)
             {
                 ProductDetail.Number = MaxNumber.ToString();
@@ -98,7 +101,7 @@ namespace DiabeticsSystem.BlazorUI.Features.Product.Presentation.Logic
                 Nav.NavigateTo(AppRouter.Products);
                 AppToast.ShowSuccessToast("Product updated", ToastService);
             }
-
+            loading = false;
         }
     }
 }

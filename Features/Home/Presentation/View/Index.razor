@@ -1,7 +1,33 @@
-﻿@attribute [Route(AppRouter.Home)]
+﻿@inherits IndexBase
+@attribute [Route(AppRouter.Home)]
+@using DiabeticsSystem.BlazorUI.Features.Home.Presentation.View
 
 <PageTitle>Home</PageTitle>
 
-    <h3 class="mb-5">Home</h3>
-
-    
+<h3 class="mb-5">Home</h3>
+<div class="row">
+    <div class="col-lg-3">
+        <DataCardWidget Title="Products"
+                        IconX="@(new Icons.Regular.Size24.Apps())">
+            <RawTemplate>
+                5
+            </RawTemplate>
+        </DataCardWidget>
+    </div>
+    <div class="col-lg-3">
+        <DataCardWidget Title="Customers"
+                        IconX="@(new Icons.Regular.Size24.People())">
+            <RawTemplate>
+                85
+            </RawTemplate>
+        </DataCardWidget>
+    </div>
+    <div class="col-lg-3">
+        <DataCardWidget Title="Records"
+                        IconX="@(new Icons.Regular.Size24.PersonBoard())">
+            <RawTemplate>
+                289
+            </RawTemplate>
+        </DataCardWidget>
+    </div>
+</div>

@@ -37,15 +37,11 @@
             <TemplateColumn Title="Actions"
                             Tooltip=true
                             Context="_product">
-                <FluentButton IconStart="@(new Icons.Regular.Size16.Edit().WithColor("white"))"
-                              Appearance="Appearance.Accent"
-                              Color="white"
+                <FluentButton IconStart="@(new Icons.Regular.Size16.Edit())"
                               Name="BtnEdit"
                               OnClick="@(()=> OnEditClick(_product.Id))">
                 </FluentButton>
-                <FluentButton IconStart="@(new Icons.Regular.Size16.Delete().WithColor("white"))"
-                              Color="white"
-                              BackgroundColor="@(AppColors.BtnDelete)"
+                <FluentButton IconStart="@(new Icons.Regular.Size16.Delete().WithColor(AppColors.BtnDelete))"
                               Name="Delete"
                               OnClick="@(()=> OnDeleteClick(_product.Id))">
                 </FluentButton>

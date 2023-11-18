@@ -2,7 +2,16 @@
 
 <FluentLayout>
     <FluentHeader>
-        Diabetics System
+        <FluentStack VerticalAlignment="VerticalAlignment.Center" HorizontalAlignment="HorizontalAlignment.Start">
+            <FluentIcon Value="@(Icon.FromImageUrl("/images/new evo white.png"))" Width="60px" />
+            <FluentLabel Typo="Typography.Header" Color="Color.Fill">
+                Diabetics System - <small>Libyan Gate</small>
+            </FluentLabel>
+        </FluentStack>
+        <FluentButton OnClick="@OpenQuickSettingAsync" 
+            Appearance="Appearance.Accent"
+                      IconStart="@(new Icons.Regular.Size20.Settings())">
+        </FluentButton>
     </FluentHeader>
     <FluentStack Class="main" Orientation="Orientation.Horizontal" Width="100%">
         <NavMenu />
@@ -20,7 +29,7 @@
             <div class="copy"><small>Evolution Technology © 2023. All rights reserved.</small></div>
         </div>
     </FluentFooter>
-  
+
 </FluentLayout>
 
 <div id="blazor-error-ui">
@@ -31,3 +40,4 @@
 
 <FluentToastContainer MaxToastCount="10" />
 <FluentDialogProvider />
+<FluentTooltipProvider />

@@ -1,5 +1,4 @@
-﻿using DiabeticsSystem.BlazorUI.Core.Services;
-using DiabeticsSystem.BlazorUI.Features.Customer.Domain.Entity;
+﻿using DiabeticsSystem.BlazorUI.Features.Customer.Domain.Entity;
 using DiabeticsSystem.BlazorUI.Features.Customer.Domain.Usecase;
 using DiabeticsSystem.BlazorUI.Features.PatientMovement.Domain.Entity;
 using DiabeticsSystem.BlazorUI.Features.PatientMovement.Domain.Usecase;
@@ -27,6 +26,8 @@ namespace DiabeticsSystem.BlazorUI.Features.PatientMovement.Presentation.Logic
         public IQueryable<CustomerEntity>? CustomersList { get; set; }
         public IQueryable<ProductEntity>? ProductList { get; set; }
 
+        public bool loading = false;
+
         protected override async Task OnInitializedAsync()
         {
             await FetchCreateRecordDialogAsync();
@@ -42,6 +43,7 @@ namespace DiabeticsSystem.BlazorUI.Features.PatientMovement.Presentation.Logic
         {
             if (SelectedCustomer is not null && SelectedProduct is not null && !string.IsNullOrEmpty(NewBarcode))
             {
+                loading = true;
                 NewRecord = new()
                 {
                     CustomerId = SelectedCustomer.Id,
@@ -57,6 +59,7 @@ namespace DiabeticsSystem.BlazorUI.Features.PatientMovement.Presentation.Logic
                 {
                     await Dialog.CancelAsync();
                 }
+                loading = false;
             }
         }
     }

@@ -2,6 +2,7 @@
 using DiabeticsSystem.BlazorUI.Features.Customer.Data.Model;
 using DiabeticsSystem.BlazorUI.Features.Customer.Domain.Usecase;
 using Microsoft.AspNetCore.Components;
+using System.Runtime.CompilerServices;
 
 namespace DiabeticsSystem.BlazorUI.Features.Customer.Presentation.Logic
 {
@@ -26,6 +27,8 @@ namespace DiabeticsSystem.BlazorUI.Features.Customer.Presentation.Logic
         public string Title { get; set; } = string.Empty;
 
         public string? FluentSelectIntValue { get; set; } = string.Empty;
+
+        public bool loading = false;
 
         async Task GetMaxNumber()
         {
@@ -79,6 +82,7 @@ namespace DiabeticsSystem.BlazorUI.Features.Customer.Presentation.Logic
         {
             try
             {
+                loading = true;
                 CustomerDetail!.Sex = string.IsNullOrEmpty(FluentSelectIntValue)
                     ? 1 : Convert.ToInt32(FluentSelectIntValue);
                 if (CustomerDetail.Id == Guid.Empty)
@@ -108,10 +112,12 @@ namespace DiabeticsSystem.BlazorUI.Features.Customer.Presentation.Logic
                     Nav.NavigateTo(AppRouter.Customer);
                     AppToast.ShowSuccessToast("Customer updated", ToastService);
                 }
+                loading = false;
             }
             catch (Exception e)
             {
                 AppToast.ShowCustomErrorToast(e.Message, ToastService);
+                loading = false;
             }
         }
 

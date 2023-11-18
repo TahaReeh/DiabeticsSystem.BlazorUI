@@ -1,3 +1,4 @@
+using DiabeticsSystem.BlazorUI.Core.Services;
 using DiabeticsSystem.BlazorUI.Features.Customer.Domain.Usecase;
 using DiabeticsSystem.BlazorUI.Features.PatientMovement.Domain.Usecase;
 using DiabeticsSystem.BlazorUI.Features.Product.Domain.Usecase;
@@ -17,6 +18,7 @@ builder.Services.AddScoped(sp => new HttpClient
     BaseAddress = new Uri("http://localhost:5172/api/")
 });
 
+builder.Services.AddScoped<ICookie, Cookie>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IProductUsecase, ProductUsecase>();
 builder.Services.AddScoped<ICustomerUsecase, CustomerUsecase>();

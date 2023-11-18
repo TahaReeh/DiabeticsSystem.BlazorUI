@@ -23,6 +23,7 @@
         public const string GetPatientMovement = "PatientMovment/GetPatientMovmentByCustomer?customerId=";
         public const string AddPatientMovement = "PatientMovment/CreatePatientMovment";
         public const string RemovePatientMovement = "PatientMovment/DeletePatientMovment?id=";
+        public const string ExportAllPatientMovments = "PatientMovment/ExportAllPatientMovments";
         #endregion
     }
 }

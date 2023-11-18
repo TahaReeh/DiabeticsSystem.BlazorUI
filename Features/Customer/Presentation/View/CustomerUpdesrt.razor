@@ -12,7 +12,7 @@
                 <DataAnnotationsValidator />
                 <FluentValidationSummary />
                 <div class="row">
-                    <div class="col-6">
+                    <div class="col-lg-6">
                         <FluentNumberField @bind-Value="MaxNumber" ReadOnly="true"
                                            Class="mb-3" style="width: 70%;" Label="Number">
                         </FluentNumberField>
@@ -21,7 +21,7 @@
                         <FluentTextField TextFieldType="TextFieldType.Tel" @bind-Value="CustomerDetail.SecondPhone" Placeholder="Second Phone" Class="mb-3" Style="width: 70%;" Label="Second Phone"></FluentTextField>
                         <FluentTextField TextFieldType="TextFieldType.Email" @bind-Value="CustomerDetail.Email" Placeholder="Email" Class="mb-3" Style="width: 70%;" Label="Email"></FluentTextField>
                     </div>
-                    <div class="col-6">
+                    <div class="col-lg-6">
                         <FluentTextField @bind-Value="CustomerDetail.Address" Placeholder="Address" Class="mb-3" Style="width: 70%;" Label="Address"></FluentTextField>
                         <FluentTextField @bind-Value="CustomerDetail.PersonalId" Placeholder="Personal Id" Class="mb-3" Style="width: 70%;" Label="Personal Id"></FluentTextField>
                         <FluentDatePicker @bind-Value="CustomerDetail.BirthDate" Class="mb-3" Style="width: 70%;" Label="BirthDate" />
@@ -46,7 +46,8 @@
                                   Type="ButtonType.Submit"
                                   Title="Save"
                                   Appearance="Appearance.Accent"
-                                  Style="width:100px">
+                                  Style="width:100px"
+                                  Loading=@loading>
                         Save
                     </FluentButton>
                     <FluentButton IconStart="@(new Icons.Regular.Size16.ArrowCircleLeft())"

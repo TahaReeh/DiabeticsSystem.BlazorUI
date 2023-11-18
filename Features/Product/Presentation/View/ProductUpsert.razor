@@ -8,7 +8,7 @@
     <div class="container">
         <FluentCard Height="" Width="" Class="shadow p-0">
             <div class="row p-0">
-                <div class="col-6 pt-4 ps-5">
+                <div class="col-lg-6 pt-4 ps-5">
                     <h4 class="pt-3 pb-2">@Title</h4>
                     <EditForm Model="ProductDetail" OnValidSubmit="HandleValidSubmit">
                         <DataAnnotationsValidator />
@@ -27,7 +27,8 @@
                                           Type="ButtonType.Submit"
                                           Title="Save"
                                           Appearance="Appearance.Accent"
-                                          Style="width:100px">
+                                          Style="width:100px"
+                                          Loading=@loading>
                                 Save
                             </FluentButton>
                             <FluentButton IconStart="@(new Icons.Regular.Size16.ArrowCircleLeft())"
@@ -39,7 +40,7 @@
                         </div>
                     </EditForm>
                 </div>
-                <div class="col-6 p-0">
+                <div class="col-lg-6 p-0">
                     <img src="/images/fffff.jpg" style="float:right;" alt="hello" />
                 </div>
             </div>

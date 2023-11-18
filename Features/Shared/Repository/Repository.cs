@@ -1,4 +1,5 @@
 ﻿using DiabeticsSystem.BlazorUI.Features.Shared.Repository.Contract;
+using System.Net.Http;
 using System.Net.Http.Json;
 
 namespace DiabeticsSystem.BlazorUI.Features.Shared.Repository

@@ -23,8 +23,6 @@ namespace DiabeticsSystem.BlazorUI.Features.Product.Presentation.Logic
 
         public PaginationState pagination = new() { ItemsPerPage = 7 };
 
-        public bool loading = false;
-
         public bool Overlay = false;
 
         public IQueryable<ProductEntity>? Items;

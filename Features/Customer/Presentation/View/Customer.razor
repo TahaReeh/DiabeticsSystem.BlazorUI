@@ -37,16 +37,12 @@
             <TemplateColumn Title="Actions"
                             Tooltip=true
                             Context="_context">
-                <FluentButton IconStart="@(new Icons.Regular.Size16.Edit().WithColor("white"))"
-                              Appearance="Appearance.Accent"
-                              Color="white"
-                              Name="BtnEdit"
+                <FluentButton IconStart="@(new Icons.Regular.Size16.Edit())"
+                              Id="BtnEdit2"
                               OnClick="@(()=> OnEditClick(_context.Id))">
                 </FluentButton>
-                <FluentButton IconStart="@(new Icons.Regular.Size16.Delete().WithColor("white"))"
-                              Color="white"
-                              BackgroundColor="@(AppColors.BtnDelete)"
-                              Name="Delete"
+                <FluentButton IconStart="@(new Icons.Regular.Size16.Delete().WithColor(AppColors.BtnDelete))"
+                              Id="BtnDelete"
                               OnClick="@(()=> OnDeleteClick(_context.Id))">
                 </FluentButton>
             </TemplateColumn>
@@ -54,6 +50,10 @@
         </FluentDataGrid>
 
         <FluentPaginator State="@pagination" />
+        
     </RawTemplate>
 
 </FluentGridCardWidget>
+<FluentTooltip Anchor="BtnEdit2">
+    Edit Product
+</FluentTooltip>

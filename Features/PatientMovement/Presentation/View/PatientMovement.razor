@@ -36,8 +36,7 @@
             <TemplateColumn Title="Actions"
                             Tooltip=true
                             Context="_context">
-                <FluentButton IconStart="@(new Icons.Regular.Size16.Delete().WithColor("white"))"
-                              BackgroundColor="@(AppColors.BtnDelete)"
+                <FluentButton IconStart="@(new Icons.Regular.Size16.Delete().WithColor(AppColors.BtnDelete))"
                               Name="Delete"
                               Id="btnDelete"
                               OnClick="@(()=> OnDeleteClick(_context.Id))">

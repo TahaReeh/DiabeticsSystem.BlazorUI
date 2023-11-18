@@ -1,0 +1,19 @@
+﻿@implements IDialogContentComponent
+
+<FluentDialogBody>
+    <FluentStack Orientation="Orientation.Vertical" Style="margin-top: 32px;">
+        <FluentLabel Typo="Typography.Header" Class="mb-3">Settings</FluentLabel>
+
+        <FluentSelect Label="Color"
+                      Items=@(Enum.GetValues<OfficeColor>())
+                      Height="200px"
+                      @bind-SelectedOption="@Color" />
+
+        <FluentSwitch Label="Theme"
+                      Style="margin-top: 16px;"
+                      UncheckedMessage="Light"
+                      CheckedMessage="Dark"
+                      @bind-Value="@IsDark" />
+    </FluentStack>
+    
+</FluentDialogBody>
