@@ -1,13 +1,9 @@
 ﻿using DiabeticsSystem.BlazorUI.Core.Services;
-using DiabeticsSystem.BlazorUI.Features.Customer.Domain.Entity;
-using DiabeticsSystem.BlazorUI.Features.Customer.Domain.Usecase;
 using DiabeticsSystem.BlazorUI.Features.PatientMovement.Data.Model;
-using DiabeticsSystem.BlazorUI.Features.PatientMovement.Domain.Entity;
 using DiabeticsSystem.BlazorUI.Features.PatientMovement.Domain.Usecase;
 using DiabeticsSystem.BlazorUI.Features.PatientMovement.Presentation.Componant;
-using DiabeticsSystem.BlazorUI.Features.Product.Domain.Usecase;
-using DiabeticsSystem.BlazorUI.Features.Product.Domain.ViewModels;
 using Microsoft.AspNetCore.Components;
+using Microsoft.JSInterop;
 
 namespace DiabeticsSystem.BlazorUI.Features.PatientMovement.Presentation.Logic
 {
@@ -21,6 +17,9 @@ namespace DiabeticsSystem.BlazorUI.Features.PatientMovement.Presentation.Logic
 
         [Inject]
         private IDialogService DialogService { get; set; } = default!;
+
+        [Inject]
+        public IJSRuntime JSRuntime { get; set; }
 
         public string Title { get; set; } = "Patient Movement";
 
@@ -78,7 +77,7 @@ namespace DiabeticsSystem.BlazorUI.Features.PatientMovement.Presentation.Logic
         }
         public async Task OnCreateClick()
         {
-           var dialog = await DialogService.ShowDialogAsync<CreateRecordDialog>(new DialogParameters()
+            var dialog = await DialogService.ShowDialogAsync<CreateRecordDialog>(new DialogParameters()
             {
                 Height = "240px",
                 Title = $"Create new record",
@@ -90,6 +89,23 @@ namespace DiabeticsSystem.BlazorUI.Features.PatientMovement.Presentation.Logic
             {
                 await FetchItemsAsync();
                 AppToast.ShowSuccessToast("Record created", ToastService);
+            }
+        }
+
+        public async Task OnBtnExportCsvClick()
+        {
+            var result = await AppDialogs.MessageBoxConfirm("Patient Movement CSV", "Export", DialogService);
+            if (!result.Cancelled)
+            {
+                var fileData = await Usecase.GetPatientMovmentsCSV();
+                if (fileData != null)
+                {
+                    var fileName = $"Diabetics{DateTime.Now.ToString("dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture)}.csv";
+
+                    await JSRuntime.InvokeAsync<object>("saveAsFile", fileName, Convert.ToBase64String(fileData));
+
+                    AppToast.ShowSuccessToast("CSV File Exproted", ToastService);
+                }
             }
         }
 

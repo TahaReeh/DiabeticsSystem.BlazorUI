@@ -17,7 +17,24 @@ namespace DiabeticsSystem.BlazorUI.Core.Services
                 },
                 PrimaryAction = "Yes",
                 SecondaryAction = "No",
-                Width = "300px",
+             
+            });
+            return await dialog.Result;
+        }
+
+        public static async Task<DialogResult> MessageBoxConfirm(string title,string action, IDialogService DialogService)
+        {
+            var dialog = await DialogService.ShowMessageBoxAsync(new DialogParameters<MessageBoxContent>()
+            {
+                Content = new()
+                {
+                    Title = $"{action} {title}",
+                    MarkupMessage = new MarkupString($"Do you want to <strong>{action}</strong> this {title}?"),
+                    Icon = new Icons.Regular.Size24.QuestionCircle(),
+                    IconColor = Color.Accent,
+                },
+                PrimaryAction = "Yes",
+                SecondaryAction = "No",
             });
             return await dialog.Result;
         }

@@ -3,12 +3,14 @@
 
 <PageTitle>@Title</PageTitle>
 
-    <h3 class="mb-5">@Title</h3>
+<h3 class="mb-5">@Title</h3>
 
 <FluentGridCardWidget Title="@Title"
                       OnBtnMainClick="@OnCreateClick"
+                      OnBtnExportCsvClick="@OnBtnExportCsvClick"
                       Visible="@Overlay"
-                      IncludeMainBtn=true>
+                      IncludeMainBtn=true
+                      IncludeExportCsvBtn=true>
     <RawTemplate>
         <FluentDataGrid Items="@Filtereditems"
                         ResizableColumns=false

@@ -8,7 +8,13 @@ namespace DiabeticsSystem.BlazorUI.Features.Shared.Componants
         public EventCallback OnBtnMainClick { get; set; }
 
         [Parameter]
-        public bool IncludeMainBtn { get; set; } 
+        public EventCallback OnBtnExportCsvClick { get; set; }
+
+        [Parameter]
+        public bool IncludeMainBtn { get; set; }
+
+        [Parameter]
+        public bool IncludeExportCsvBtn { get; set; }
 
         [Parameter]
         public string? Title { get; set; }

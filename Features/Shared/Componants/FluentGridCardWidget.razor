@@ -3,18 +3,30 @@
             Height=""
             Class="p-4 shadow">
     <h4 class="mb-4">@Title</h4>
-    @if (IncludeMainBtn)
-    {
-        <FluentButton IconStart="@(new Icons.Regular.Size16.AddCircle())"
-                      Loading="@Loading"
-                      OnClick="@OnBtnMainClick"
-                      Name="BtnMain"
-                      Class="mb-3"
-                      Appearance="Appearance.Accent">
-            Create @Title
-        </FluentButton>
-    }
-
+    <div class="d-flex justify-content-start">
+        @if (IncludeMainBtn)
+        {
+            <FluentButton IconStart="@(new Icons.Regular.Size16.AddCircle())"
+                          Loading="@Loading"
+                          OnClick="@OnBtnMainClick"
+                          Name="BtnMain"
+                          Class="mb-3 me-1"
+                          Appearance="Appearance.Accent">
+                Create @Title
+            </FluentButton>
+        }
+        @if (IncludeExportCsvBtn)
+        {
+            <FluentButton IconStart="@(new Icons.Regular.Size16.ArrowExportUp())"
+                          Loading="@Loading"
+                          OnClick="@OnBtnExportCsvClick"
+                          Name="BtnExportCsv"
+                          Id="BtnExportCsv"
+                          Class="mb-3 float-end"
+                          Appearance="Appearance.Outline">
+            </FluentButton>
+        }
+    </div>
     @RawTemplate
 
     <FluentOverlay Visible=@Visible
@@ -25,4 +37,10 @@
         <FluentProgressRing />
     </FluentOverlay>
 
+    <FluentTooltip Anchor="BtnExportCsv">
+        Export To CSV File
+    </FluentTooltip>
+
 </FluentCard>
+
+
