@@ -1,4 +1,5 @@
 ﻿using DiabeticsSystem.BlazorUI.Core.Services;
+using DiabeticsSystem.BlazorUI.Core.SharedResources;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Fast.Components.FluentUI.DesignTokens;
 
@@ -12,38 +13,30 @@ namespace DiabeticsSystem.BlazorUI.Features.Shared.Componants
         [Inject]
         AccentBaseColor AccentBaseColors { get; set; } = default!;
 
-        //[Inject]
-        //private ICookie cookie { get; set; } = default!;
+        private OfficeColor _color = (OfficeColor)SessionStore.StaticSettingsVM.AccentColor;
 
-        private OfficeColor _color = OfficeColor.Default;
-
-        private bool _isDark = false;
-
-        //protected override async Task OnInitializedAsync()
-        //{
-            //var accentValue = await cookie.GetValue("myAccentColor");
-            //var themeMode = await cookie.GetValue("myThemeMode");
-        //}
         public OfficeColor Color
         {
             get => _color;
             set
             {
-                _color = value == OfficeColor.Default ? OfficeColor.Word : value;
+                _color = value == OfficeColor.Default ? OfficeColor.SharePoint : value;
+                var colorHex = _color.GetDescription() ?? OfficeColor.SharePoint.GetDescription()!;
 
-                var colorHex = _color.ToAttributeValue() ?? "default";
                 _ = AccentBaseColors.WithDefault(colorHex.ToSwatch());
+
+                SessionStore.StaticSettingsVM.AccentColor = (int)_color;
             }
         }
 
         public bool IsDark
         {
-            get => _isDark;
+            get => SessionStore.StaticSettingsVM.IsDark;
             set
             {
-                _isDark = value;
+                SessionStore.StaticSettingsVM.IsDark = value;
 
-                float luminance = _isDark ? (float)0.15 : 1;
+                float luminance = SessionStore.StaticSettingsVM.IsDark ? (float)0.15 : 1;
                 _ = BaseLayerLuminances.WithDefault(luminance);
             }
         }

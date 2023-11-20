@@ -108,6 +108,21 @@ namespace DiabeticsSystem.BlazorUI.Features.PatientMovement.Presentation.Logic
                 }
             }
         }
+        public async Task OnBtnExportPdfClick()
+        {
+            var result = await AppDialogs.MessageBoxConfirm("Patient Movement PDF", "Export", DialogService);
+            if (!result.Cancelled)
+            {
+                var fileData = await Usecase.GetPatientMovmentsPDF();
+                if (fileData != null)
+                {
+                    var fileName = $"Diabetics{DateTime.Now.ToString("dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture)}.csv";
 
+                    await JSRuntime.InvokeAsync<object>("saveAsFile", fileName, Convert.ToBase64String(fileData));
+
+                    AppToast.ShowSuccessToast("PDF File Exproted", ToastService);
+                }
+            }
+        }
     }
 }

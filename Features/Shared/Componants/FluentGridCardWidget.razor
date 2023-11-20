@@ -22,7 +22,18 @@
                           OnClick="@OnBtnExportCsvClick"
                           Name="BtnExportCsv"
                           Id="BtnExportCsv"
-                          Class="mb-3 float-end"
+                          Class="mb-3 me-1"
+                          Appearance="Appearance.Outline">
+            </FluentButton>
+        }
+        @if (IncludeExporPdfBtn)
+        {
+            <FluentButton IconStart="@(new Icons.Regular.Size16.DocumentPdf())"
+                          Loading="@Loading"
+                          OnClick="@OnBtnExportPdfClick"
+                          Name="BtnExportPDF"
+                          Id="BtnExportPDF"
+                          Class="mb-3 me-1"
                           Appearance="Appearance.Outline">
             </FluentButton>
         }
@@ -39,6 +50,9 @@
 
     <FluentTooltip Anchor="BtnExportCsv">
         Export To CSV File
+    </FluentTooltip>
+    <FluentTooltip Anchor="BtnExportPDF">
+        Export To PDF File
     </FluentTooltip>
 
 </FluentCard>

@@ -57,8 +57,6 @@
 
   <ItemGroup>
     <Folder Include="Features\Customer\Presentation\Componant\" />
-    <Folder Include="Features\Home\Data\" />
-    <Folder Include="Features\Home\Domain\" />
     <Folder Include="Features\Home\Presentation\Component\" />
     <Folder Include="Features\Product\Presentation\Componants\" />
   </ItemGroup>

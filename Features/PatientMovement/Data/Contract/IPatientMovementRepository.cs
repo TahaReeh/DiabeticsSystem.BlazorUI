@@ -8,5 +8,6 @@ namespace DiabeticsSystem.BlazorUI.Features.PatientMovement.Data.Contract
         Task<IEnumerable<PatientMovementModel>> GetPatientByCustomer(string route, Guid? id);
         Task<string> AddTest(string route, CreatePatientMovementEntity entity);
         Task<byte[]> GetPatientMovmentsCSV(string route);
+        Task<byte[]> GetPatientMovmentsPDF(string route);
     }
 }

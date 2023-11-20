@@ -15,6 +15,7 @@ namespace DiabeticsSystem.BlazorUI.Features.PatientMovement.Domain.Usecase
         Task<string> AddPatientMovement(CreatePatientMovementEntity entity);
         Task RemovePatientMovement(Guid? id);
         Task<byte[]> GetPatientMovmentsCSV();
+        Task<byte[]> GetPatientMovmentsPDF();
     }
 
     public class PatientMovementUsecase(IUnitOfWork _unitOfWork) : IPatientMovementUsecase
@@ -47,9 +48,12 @@ namespace DiabeticsSystem.BlazorUI.Features.PatientMovement.Domain.Usecase
 
         public async Task<byte[]> GetPatientMovmentsCSV()
         {
-            return await unitOfWork.PatientMovementRepository.GetPatientMovmentsCSV(EndPoints.ExportAllPatientMovments);
+            return await unitOfWork.PatientMovementRepository.GetPatientMovmentsCSV(EndPoints.ExportPatientMovmentsToCSV);
         }
 
-
+        public async Task<byte[]> GetPatientMovmentsPDF()
+        {
+            return await unitOfWork.PatientMovementRepository.GetPatientMovmentsCSV(EndPoints.ExportPatientMovmentsToPDF);
+        }
     }
 }

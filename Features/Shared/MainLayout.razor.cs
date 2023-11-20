@@ -1,15 +1,40 @@
 ﻿using DiabeticsSystem.BlazorUI.Core.Services;
+using DiabeticsSystem.BlazorUI.Core.SharedResources;
+using DiabeticsSystem.BlazorUI.Features.Home.Data.Model;
+using DiabeticsSystem.BlazorUI.Features.Home.Domain.Usecase;
 using DiabeticsSystem.BlazorUI.Features.Shared.Componants;
 using Microsoft.AspNetCore.Components;
+using Microsoft.Fast.Components.FluentUI.DesignTokens;
 
 namespace DiabeticsSystem.BlazorUI.Features.Shared
 {
     public partial class MainLayout
     {
         [Inject]
+        private ISystemSettingsUsecase Usecase { get; set; } = default!;
+        [Inject]
         private IDialogService DialogService { get; set; } = default!;
         [Inject]
-        private ICookie cookie { get; set; } = default!;
+        BaseLayerLuminance BaseLayerLuminances { get; set; } = default!;
+        [Inject]
+        AccentBaseColor AccentBaseColors { get; set; } = default!;
+
+        protected override async Task OnInitializedAsync()
+        {
+            await FetchSystemSettingsData();
+        }
+
+        private async Task FetchSystemSettingsData()
+        {
+            SessionStore.StaticSettingsVM = await Usecase.GetUserSystemSettings("UserId");
+
+            var _color = (OfficeColor)SessionStore.StaticSettingsVM.AccentColor;
+            _ = await AccentBaseColors.WithDefault(_color.GetDescription()!.ToSwatch());
+
+
+            float luminance = SessionStore.StaticSettingsVM.IsDark ? (float)0.15 : 1;
+            _ = await BaseLayerLuminances.WithDefault(luminance);
+        }
 
         public async Task OpenQuickSettingAsync()
         {
@@ -27,15 +52,13 @@ namespace DiabeticsSystem.BlazorUI.Features.Shared
 
         private async Task HandleQuickSetting(DialogResult result)
         {
-            if (result.Cancelled)
+            if (!result.Cancelled)
             {
-                return;
-            }
-            if (result.Data is not null)
-            {
-                string? _officeColor = result.Data as string;
-
-                await cookie.SetValue("myAccentColor", _officeColor ?? "default");
+                if (result.Data is not null)
+                {
+                    var obj = SessionStore.StaticSettingsVM;
+                    await Usecase.UpdateUserSettings(obj);
+                }
             }
         }
     }

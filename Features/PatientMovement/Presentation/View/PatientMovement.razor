@@ -8,9 +8,11 @@
 <FluentGridCardWidget Title="@Title"
                       OnBtnMainClick="@OnCreateClick"
                       OnBtnExportCsvClick="@OnBtnExportCsvClick"
+                      OnBtnExportPdfClick="@OnBtnExportPdfClick"
                       Visible="@Overlay"
                       IncludeMainBtn=true
-                      IncludeExportCsvBtn=true>
+                      IncludeExportCsvBtn=true
+                      IncludeExporPdfBtn=true>
     <RawTemplate>
         <FluentDataGrid Items="@Filtereditems"
                         ResizableColumns=false

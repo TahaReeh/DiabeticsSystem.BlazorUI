@@ -11,10 +11,16 @@ namespace DiabeticsSystem.BlazorUI.Features.Shared.Componants
         public EventCallback OnBtnExportCsvClick { get; set; }
 
         [Parameter]
+        public EventCallback OnBtnExportPdfClick { get; set; }
+
+        [Parameter]
         public bool IncludeMainBtn { get; set; }
 
         [Parameter]
         public bool IncludeExportCsvBtn { get; set; }
+
+        [Parameter]
+        public bool IncludeExporPdfBtn { get; set; }
 
         [Parameter]
         public string? Title { get; set; }
