@@ -40,5 +40,11 @@ namespace DiabeticsSystem.BlazorUI.Features.Shared.Componants
                 _ = BaseLayerLuminances.WithDefault(luminance);
             }
         }
+
+        public string Note
+        {
+            get => SessionStore.StaticSettingsVM.Notes;
+            set => SessionStore.StaticSettingsVM.Notes = value;
+        }
     }
 }

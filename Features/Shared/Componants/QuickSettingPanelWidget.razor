@@ -15,5 +15,12 @@
                       CheckedMessage="Dark"
                       @bind-Value="@IsDark" />
     </FluentStack>
-
+    <FluentStack Orientation="Orientation.Vertical" Class="mt-5">
+        <FluentTextArea Label="Notes"
+                        Cols="35"
+                        Placeholder="Write your notes......"
+                        Rows="10"
+                        Resize="TextAreaResize.Vertical"
+                        @bind-Value="@Note"/>
+    </FluentStack>
 </FluentDialogBody>
