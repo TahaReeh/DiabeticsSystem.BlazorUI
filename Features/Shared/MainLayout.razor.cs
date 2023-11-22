@@ -15,6 +15,8 @@ namespace DiabeticsSystem.BlazorUI.Features.Shared
         [Inject]
         private IDialogService DialogService { get; set; } = default!;
         [Inject]
+        public IToastService ToastService { get; set; } = default!;
+        [Inject]
         BaseLayerLuminance BaseLayerLuminances { get; set; } = default!;
         [Inject]
         AccentBaseColor AccentBaseColors { get; set; } = default!;
@@ -29,11 +31,11 @@ namespace DiabeticsSystem.BlazorUI.Features.Shared
             SessionStore.StaticSettingsVM = await Usecase.GetUserSystemSettings("UserId");
 
             var _color = (OfficeColor)SessionStore.StaticSettingsVM.AccentColor;
-            _ = await AccentBaseColors.WithDefault(_color.GetDescription()!.ToSwatch());
+            await AccentBaseColors.WithDefault(_color.GetDescription()!.ToSwatch());
 
 
             float luminance = SessionStore.StaticSettingsVM.IsDark ? (float)0.15 : 1;
-            _ = await BaseLayerLuminances.WithDefault(luminance);
+            await BaseLayerLuminances.WithDefault(luminance);
         }
 
         public async Task OpenQuickSettingAsync()
@@ -58,6 +60,7 @@ namespace DiabeticsSystem.BlazorUI.Features.Shared
                 {
                     var obj = SessionStore.StaticSettingsVM;
                     await Usecase.UpdateUserSettings(obj);
+                    AppToast.ShowSuccessToast("Theme changed", ToastService);
                 }
             }
         }

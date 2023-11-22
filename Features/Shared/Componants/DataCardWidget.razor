@@ -1,15 +1,26 @@
-﻿<FluentCard Width="300px"
-            Height="200px"
-            Class="p-4 shadow m-2">
+﻿<div class="container">
 
-    <FluentStack VerticalAlignment="VerticalAlignment.Center">
-        <FluentIcon Value="@IconX" />
-        <FluentLabel Typo="Typography.PaneHeader">
-            @Title
-        </FluentLabel>
-    </FluentStack>
-    <FluentLabel Typo="Typography.PageTitle" Weight="FontWeight.Bold" Class="mt-3" Color="Color.Accent">
-        @RawTemplate
-    </FluentLabel>
-    
-</FluentCard>
+    <FluentCard Width="300px"
+                Height="200px"
+                Class="shadow p-0">
+        <div class="row  p-0 ">
+            <div class="col-1">
+                <div class="square"></div>
+            </div>
+            <div class="col-8 pt-4 ps-2">
+                <FluentStack VerticalAlignment="VerticalAlignment.Center">
+                    <FluentIcon Value="@IconX" />
+                    <FluentLabel Typo="Typography.PaneHeader">
+                        @Title
+                    </FluentLabel>
+
+                </FluentStack>
+
+                <FluentLabel Typo="Typography.PageTitle" Weight="FontWeight.Bold" Class="mt-3" Color="Color.Accent">
+                    @RawTemplate
+                </FluentLabel>
+            </div>
+        </div>
+    </FluentCard>
+
+</div>

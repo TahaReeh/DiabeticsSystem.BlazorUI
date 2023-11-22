@@ -8,6 +8,7 @@
 <FluentCombobox Label="Patients List"
                 Placeholder="Select Patient"
                 Class=" mb-3"
+                Autocomplete="ComboboxAutocomplete.Inline"
                 Items="CustomersList"
                 OptionValue="@(p=>p?.Id.ToString())"
                 OptionText="@(p=>p?.Name)"
