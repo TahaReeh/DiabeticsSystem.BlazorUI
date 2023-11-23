@@ -116,7 +116,7 @@ namespace DiabeticsSystem.BlazorUI.Features.PatientMovement.Presentation.Logic
                 var fileData = await Usecase.GetPatientMovmentsPDF();
                 if (fileData != null)
                 {
-                    var fileName = $"Diabetics{DateTime.Now.ToString("dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture)}.csv";
+                    var fileName = $"Diabetics{DateTime.Now.ToString("dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture)}.pdf";
 
                     await JSRuntime.InvokeAsync<object>("saveAsFile", fileName, Convert.ToBase64String(fileData));
 
