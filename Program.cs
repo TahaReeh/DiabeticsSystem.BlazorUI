@@ -16,7 +16,7 @@ builder.Services.AddFluentUIComponents(options =>
 
 builder.Services.AddScoped(sp => new HttpClient
 {
-    BaseAddress = new Uri("http://localhost:86/api/")
+    BaseAddress = new Uri("http://localhost:86/api/") //localhost:5172/
 });
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
