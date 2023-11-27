@@ -8,33 +8,37 @@
 <div class="row">
     <div class="col-lg-3">
         <DataCardWidget Title="Products"
-                        IconX="@(new Icons.Regular.Size24.Apps())">
+                        IconX="@(new Icons.Regular.Size24.Apps())"
+                        Visible=@Overlay>
             <RawTemplate>
-                5
+                @homeAnalyticsVM.ProductCount
             </RawTemplate>
         </DataCardWidget>
     </div>
     <div class="col-lg-3">
         <DataCardWidget Title="Customers"
-                        IconX="@(new Icons.Regular.Size24.People())">
+                        IconX="@(new Icons.Regular.Size24.People())"
+                        Visible=@Overlay>
             <RawTemplate>
-                85
+                @homeAnalyticsVM.CustomerCount
             </RawTemplate>
         </DataCardWidget>
     </div>
     <div class="col-lg-3">
         <DataCardWidget Title="Records"
-                        IconX="@(new Icons.Regular.Size24.PersonBoard())">
+                        IconX="@(new Icons.Regular.Size24.PersonBoard())"
+                        Visible=@Overlay>
             <RawTemplate>
-                289
+                @homeAnalyticsVM.PatientMovesCount
             </RawTemplate>
         </DataCardWidget>
     </div>
     <div class="col-lg-3">
         <DataCardWidget Title="Users"
-                        IconX="@(new Icons.Regular.Size24.Person())">
+                        IconX="@(new Icons.Regular.Size24.Person())"
+                        Visible=@Overlay>
             <RawTemplate>
-                1
+                @homeAnalyticsVM.UsersCount
             </RawTemplate>
         </DataCardWidget>
     </div>

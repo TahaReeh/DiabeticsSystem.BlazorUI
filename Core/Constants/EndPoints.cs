@@ -24,12 +24,17 @@
         public const string AddPatientMovement = "PatientMovment/CreatePatientMovment";
         public const string RemovePatientMovement = "PatientMovment/DeletePatientMovment?id=";
         public const string ExportPatientMovmentsToCSV = "PatientMovment/ExportPatientMovmentsToCSV";
-        public const string ExportPatientMovmentsToPDF = "PatientMovment/ExportAllPatientMovmentsToPDF";
+        public const string ExportAllPatientsMovmentToPDF = "PatientMovment/ExportAllPatientMovmentsToPDF";
+        public const string ExportPatientMovementByCustomerToPDF = "PatientMovment/ExportPatientMovementByCustomerToPDF?customerId=";
         #endregion
 
         #region SystemSettings
         public const string GetUserSystemSettings = "SystemSettings/GetUserSystemSettings?userId=";
         public const string UpdateUserSystemSettings = "SystemSettings/UpdateUserSystemSettings";
+        #endregion
+
+        #region Analytics
+        public const string GetHomeAnalytics = "Analytics/GetHomeAnalytics";
         #endregion
     }
 }

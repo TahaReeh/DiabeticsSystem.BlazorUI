@@ -11,7 +11,7 @@ namespace DiabeticsSystem.BlazorUI.Features.Shared
     public partial class MainLayout
     {
         [Inject]
-        private ISystemSettingsUsecase Usecase { get; set; } = default!;
+        private IHomeUsecase Usecase { get; set; } = default!;
         [Inject]
         private IDialogService DialogService { get; set; } = default!;
         [Inject]
@@ -60,7 +60,7 @@ namespace DiabeticsSystem.BlazorUI.Features.Shared
                 {
                     var obj = SessionStore.StaticSettingsVM;
                     await Usecase.UpdateUserSettings(obj);
-                    AppToast.ShowSuccessToast("Theme changed", ToastService);
+                    AppToast.ShowSuccessToast("Settings saved", ToastService);
                 }
             }
         }

@@ -19,7 +19,7 @@ namespace DiabeticsSystem.BlazorUI.Features.PatientMovement.Presentation.Logic
         private IDialogService DialogService { get; set; } = default!;
 
         [Inject]
-        public IJSRuntime JSRuntime { get; set; }
+        public IJSRuntime JSRuntime { get; set; } = default!;
 
         public string Title { get; set; } = "Patient Movement";
 
@@ -110,10 +110,10 @@ namespace DiabeticsSystem.BlazorUI.Features.PatientMovement.Presentation.Logic
         }
         public async Task OnBtnExportPdfClick()
         {
-            var result = await AppDialogs.MessageBoxConfirm("Patient Movement PDF", "Export", DialogService);
+            var result = await AppDialogs.MessageBoxConfirm("Patients Movement PDF", "Export", DialogService);
             if (!result.Cancelled)
             {
-                var fileData = await Usecase.GetPatientMovmentsPDF();
+                var fileData = await Usecase.GetAllPatientsMovmentPDF();
                 if (fileData != null)
                 {
                     var fileName = $"Diabetics{DateTime.Now.ToString("dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture)}.pdf";

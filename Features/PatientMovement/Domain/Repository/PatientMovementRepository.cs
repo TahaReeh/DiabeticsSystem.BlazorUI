@@ -27,9 +27,17 @@ namespace DiabeticsSystem.BlazorUI.Features.PatientMovement.Domain.Repository
             return fileBytes;
         }
 
-        public async Task<byte[]> GetPatientMovmentsPDF(string route)
+        public async Task<byte[]> GetAllPatientsMovmentPDF(string route)
         {
             var response = await _http.GetAsync(route);
+            response.EnsureSuccessStatusCode();
+            var fileBytes = await response.Content.ReadAsByteArrayAsync();
+            return fileBytes;
+        }
+
+        public async Task<byte[]> GetPatientMovementByCustomerToPDF(string route, Guid id)
+        {
+            var response = await _http.GetAsync($"{route}{id}");
             response.EnsureSuccessStatusCode();
             var fileBytes = await response.Content.ReadAsByteArrayAsync();
             return fileBytes;

@@ -3,7 +3,7 @@
 
 <PageTitle>@Title</PageTitle>
 
-    <h3 class="mb-5">@Title</h3>
+<h3 class="mb-5">@Title</h3>
 
 <FluentCombobox Label="Patients List"
                 Placeholder="Select Patient"
@@ -27,7 +27,9 @@
 
 <FluentGridCardWidget Title="@Title"
                       Visible="@Overlay"
-                      IncludeMainBtn=false>
+                      IncludeMainBtn=false
+                      IncludeExporPdfBtn=true
+                      OnBtnExportPdfClick="@OnBtnExportPdfClick">
     <RawTemplate>
 
         <FluentDataGrid Items="@(Filtereditems)"

@@ -10,7 +10,7 @@ namespace DiabeticsSystem.BlazorUI.Features.Customer.Presentation.Logic
         [Inject]
         private ICustomerUsecase Usecase { get; set; } = default!;
         [Inject]
-        private NavigationManager? Nav { get; set; }
+        private NavigationManager Nav { get; set; } = default!;
 
         [Inject]
         public IToastService ToastService { get; set; } = default!;
@@ -42,8 +42,10 @@ namespace DiabeticsSystem.BlazorUI.Features.Customer.Presentation.Logic
             Items = await Usecase.GetAllCustomer();
         }
 
+        int xx = 1;
         public IQueryable<CustomerEntity>? Filtereditems =>
-            Items?.Where(x => x.Name.Contains(nameFilter, StringComparison.CurrentCultureIgnoreCase));
+            Items?.Where(x => x.Name.Contains(nameFilter, StringComparison.CurrentCultureIgnoreCase)
+            ).OrderBy(x=> Convert.ToInt32(x.Number));
 
         public void HandleNameFilter(ChangeEventArgs args)
         {

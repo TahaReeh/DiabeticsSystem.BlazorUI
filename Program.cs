@@ -25,7 +25,7 @@ builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IProductUsecase, ProductUsecase>();
 builder.Services.AddScoped<ICustomerUsecase, CustomerUsecase>();
 builder.Services.AddScoped<IPatientMovementUsecase, PatientMovementUsecase>();
-builder.Services.AddScoped<ISystemSettingsUsecase, SystemSettingsUsecase>();
+builder.Services.AddScoped<IHomeUsecase, HomeUsecase>();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 

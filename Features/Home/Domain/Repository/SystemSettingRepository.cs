@@ -6,6 +6,10 @@ namespace DiabeticsSystem.BlazorUI.Features.Home.Domain.Repository
 {
     public class SystemSettingRepository(HttpClient http) : Repository<SystemSettingsVM>(http), ISystemSettingRepository
     {
+        public async Task<HomeAnalyticsVM> GetHomeAnalytics(string route) =>
+            (await _http.GetFromJsonAsync<HomeAnalyticsVM>(route))!;
+
+
         public async Task<SystemSettingsVM> TempGetUserSystemSettings(string route, string userId) => 
             (await _http.GetFromJsonAsync<SystemSettingsVM>($"{route}{userId}"))!;
 

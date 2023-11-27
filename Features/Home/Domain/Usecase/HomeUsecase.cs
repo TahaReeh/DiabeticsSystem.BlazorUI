@@ -2,14 +2,20 @@
 
 namespace DiabeticsSystem.BlazorUI.Features.Home.Domain.Usecase
 {
-    public interface ISystemSettingsUsecase
+    public interface IHomeUsecase
     {
         Task<SystemSettingsVM> GetUserSystemSettings(string userId);
+        Task<HomeAnalyticsVM> GetHomeAnalytics();
         Task UpdateUserSettings(SystemSettingsVM entity);
     }
-    public class SystemSettingsUsecase(IUnitOfWork unitOfWork) : ISystemSettingsUsecase
+    public class HomeUsecase(IUnitOfWork unitOfWork) : IHomeUsecase
     {
         private readonly IUnitOfWork _unitOfWork = unitOfWork;
+
+        public async Task<HomeAnalyticsVM> GetHomeAnalytics()
+        {
+            return await _unitOfWork.SystemSettingRepository.GetHomeAnalytics(EndPoints.GetHomeAnalytics);
+        }
 
         public async Task<SystemSettingsVM> GetUserSystemSettings(string userId)
         {
