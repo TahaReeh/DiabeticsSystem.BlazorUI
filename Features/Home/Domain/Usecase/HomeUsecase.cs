@@ -14,17 +14,17 @@ namespace DiabeticsSystem.BlazorUI.Features.Home.Domain.Usecase
 
         public async Task<HomeAnalyticsVM> GetHomeAnalytics()
         {
-            return await _unitOfWork.SystemSettingRepository.GetHomeAnalytics(EndPoints.GetHomeAnalytics);
+            return await _unitOfWork.HomeRepository.GetHomeAnalytics(EndPoints.GetHomeAnalytics);
         }
 
         public async Task<SystemSettingsVM> GetUserSystemSettings(string userId)
         {
-            return await _unitOfWork.SystemSettingRepository.TempGetUserSystemSettings(EndPoints.GetUserSystemSettings, userId);
+            return await _unitOfWork.HomeRepository.TempGetUserSystemSettings(EndPoints.GetUserSystemSettings, userId);
         }
 
         public async Task UpdateUserSettings(SystemSettingsVM entity)
         {
-            await _unitOfWork.SystemSettingRepository.UpdateAsync(EndPoints.UpdateUserSystemSettings, entity);
+            await _unitOfWork.HomeRepository.UpdateAsync(EndPoints.UpdateUserSystemSettings, entity);
         }
     }
 }

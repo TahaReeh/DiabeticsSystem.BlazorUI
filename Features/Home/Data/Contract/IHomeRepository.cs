@@ -2,7 +2,7 @@
 
 namespace DiabeticsSystem.BlazorUI.Features.Home.Data.Contract
 {
-    public interface ISystemSettingRepository : IRepository<SystemSettingsVM>
+    public interface IHomeRepository : IRepository<SystemSettingsVM>
     {
         Task<SystemSettingsVM> TempGetUserSystemSettings(string route, string userId);
         Task<HomeAnalyticsVM> GetHomeAnalytics(string route);

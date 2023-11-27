@@ -7,9 +7,10 @@ namespace DiabeticsSystem.BlazorUI.Features.Shared.Repository.Contract
 {
     public interface IUnitOfWork
     {
+        IRepository<T> GetRepository<T>() where T : class;
         IProductRepository ProductRepository { get; }
         ICustomerRepository CustomerRepository { get; }
         IPatientMovementRepository PatientMovementRepository { get; }
-        ISystemSettingRepository SystemSettingRepository { get; }
+        IHomeRepository HomeRepository { get; }
     }
 }

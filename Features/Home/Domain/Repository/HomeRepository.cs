@@ -4,7 +4,7 @@ using System.Net.Http.Json;
 
 namespace DiabeticsSystem.BlazorUI.Features.Home.Domain.Repository
 {
-    public class SystemSettingRepository(HttpClient http) : Repository<SystemSettingsVM>(http), ISystemSettingRepository
+    public class HomeRepository(HttpClient http) : Repository<SystemSettingsVM>(http), IHomeRepository
     {
         public async Task<HomeAnalyticsVM> GetHomeAnalytics(string route) =>
             (await _http.GetFromJsonAsync<HomeAnalyticsVM>(route))!;

@@ -42,6 +42,7 @@ namespace DiabeticsSystem.BlazorUI.Features.Customer.Domain.Usecase
         public async Task RemoveCustomer(Guid? id)
         {
             await unitOfWork.CustomerRepository.RemoveAsync(EndPoints.RemoveCustomer, id);
+            //await unitOfWork.GetRepository<CustomerEntity>().RemoveAsync(EndPoints.GetCustomer, id);
         }
 
         public async Task UpdateCustomer(CustomerModel entity)

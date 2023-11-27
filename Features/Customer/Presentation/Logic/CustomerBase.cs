@@ -42,7 +42,6 @@ namespace DiabeticsSystem.BlazorUI.Features.Customer.Presentation.Logic
             Items = await Usecase.GetAllCustomer();
         }
 
-        int xx = 1;
         public IQueryable<CustomerEntity>? Filtereditems =>
             Items?.Where(x => x.Name.Contains(nameFilter, StringComparison.CurrentCultureIgnoreCase)
             ).OrderBy(x=> Convert.ToInt32(x.Number));

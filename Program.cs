@@ -16,9 +16,10 @@ builder.Services.AddFluentUIComponents(options =>
 
 builder.Services.AddScoped(sp => new HttpClient
 {
-    BaseAddress = new Uri("http://localhost:5172/api/")
+    BaseAddress = new Uri("http://localhost:86/api/")
 });
 
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddScoped<ICookie, Cookie>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
@@ -26,7 +27,5 @@ builder.Services.AddScoped<IProductUsecase, ProductUsecase>();
 builder.Services.AddScoped<ICustomerUsecase, CustomerUsecase>();
 builder.Services.AddScoped<IPatientMovementUsecase, PatientMovementUsecase>();
 builder.Services.AddScoped<IHomeUsecase, HomeUsecase>();
-
-builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 await builder.Build().RunAsync();
