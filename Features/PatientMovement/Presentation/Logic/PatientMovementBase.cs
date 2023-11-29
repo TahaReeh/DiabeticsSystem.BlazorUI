@@ -79,7 +79,6 @@ namespace DiabeticsSystem.BlazorUI.Features.PatientMovement.Presentation.Logic
         {
             var dialog = await DialogService.ShowDialogAsync<CreateRecordDialog>(new DialogParameters()
             {
-                Height = "240px",
                 Title = $"Create new record",
                 PreventDismissOnOverlayClick = true,
                 PreventScroll = true,
