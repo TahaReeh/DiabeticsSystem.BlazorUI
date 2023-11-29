@@ -9,17 +9,14 @@ using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");
-builder.Services.AddFluentUIComponents(options =>
-{
-    options.HostingModel = BlazorHostingModel.WebAssembly;
-});
+builder.Services.AddFluentUIComponents();
+builder.Services.AddDataGridEntityFrameworkAdapter();
 
 builder.Services.AddScoped(sp => new HttpClient
 {
-    BaseAddress = new Uri("http://localhost:86/api/") //localhost:5172/
+    BaseAddress = new Uri("http://localhost:5172/api/") //localhost:5172/
 });
 
-builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddScoped<ICookie, Cookie>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 

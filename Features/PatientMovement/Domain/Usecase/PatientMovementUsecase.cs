@@ -1,10 +1,5 @@
-﻿using AutoMapper;
-using DiabeticsSystem.BlazorUI.Features.PatientMovement.Data.Model;
+﻿using DiabeticsSystem.BlazorUI.Features.PatientMovement.Data.Model;
 using DiabeticsSystem.BlazorUI.Features.PatientMovement.Domain.Entity;
-using DiabeticsSystem.BlazorUI.Features.Product.Data.Model;
-using DiabeticsSystem.BlazorUI.Features.Product.Domain.ViewModels;
-using Microsoft.Fast.Components.FluentUI.DesignTokens;
-using System.Linq;
 
 namespace DiabeticsSystem.BlazorUI.Features.PatientMovement.Domain.Usecase
 {

@@ -7,51 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Core\BaseClient\**" />
-    <Compile Remove="Core\DataStore\**" />
-    <Compile Remove="Core\DI\**" />
-    <Compile Remove="Core\Exceptions\**" />
-    <Compile Remove="Core\Style\**" />
-    <Compile Remove="Core\Utility\**" />
-    <Compile Remove="Features\Home\Presentation\Componant\**" />
-    <Compile Remove="Features\Product\Data\IRepository\**" />
-    <Compile Remove="Features\Product\Presentation\Componant\**" />
-    <Content Remove="Core\BaseClient\**" />
-    <Content Remove="Core\DataStore\**" />
-    <Content Remove="Core\DI\**" />
-    <Content Remove="Core\Exceptions\**" />
-    <Content Remove="Core\Style\**" />
-    <Content Remove="Core\Utility\**" />
-    <Content Remove="Features\Home\Presentation\Componant\**" />
-    <Content Remove="Features\Product\Data\IRepository\**" />
-    <Content Remove="Features\Product\Presentation\Componant\**" />
-    <EmbeddedResource Remove="Core\BaseClient\**" />
-    <EmbeddedResource Remove="Core\DataStore\**" />
-    <EmbeddedResource Remove="Core\DI\**" />
-    <EmbeddedResource Remove="Core\Exceptions\**" />
-    <EmbeddedResource Remove="Core\Style\**" />
-    <EmbeddedResource Remove="Core\Utility\**" />
-    <EmbeddedResource Remove="Features\Home\Presentation\Componant\**" />
-    <EmbeddedResource Remove="Features\Product\Data\IRepository\**" />
-    <EmbeddedResource Remove="Features\Product\Presentation\Componant\**" />
-    <None Remove="Core\BaseClient\**" />
-    <None Remove="Core\DataStore\**" />
-    <None Remove="Core\DI\**" />
-    <None Remove="Core\Exceptions\**" />
-    <None Remove="Core\Style\**" />
-    <None Remove="Core\Utility\**" />
-    <None Remove="Features\Home\Presentation\Componant\**" />
-    <None Remove="Features\Product\Data\IRepository\**" />
-    <None Remove="Features\Product\Presentation\Componant\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="12.0.1" />
-    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="8.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="8.0.0" PrivateAssets="all" />
-    <PackageReference Include="Microsoft.Fast.Components.FluentUI" Version="3.3.0" />
-    <PackageReference Include="Microsoft.Fast.Components.FluentUI.Icons" Version="3.3.0" />
+    <PackageReference Include="Microsoft.FluentUI.AspNetCore.Components" Version="4.1.0" />
+    <PackageReference Include="Microsoft.FluentUI.AspNetCore.Components.DataGrid.EntityFrameworkAdapter" Version="4.1.0" />
+    <PackageReference Include="Microsoft.FluentUI.AspNetCore.Components.Icons" Version="4.1.0" />
     <PackageReference Include="System.Net.Http.Json" Version="8.0.0" />
   </ItemGroup>
 

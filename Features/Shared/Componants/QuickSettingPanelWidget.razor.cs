@@ -1,7 +1,4 @@
-﻿using DiabeticsSystem.BlazorUI.Core.Services;
-using DiabeticsSystem.BlazorUI.Core.SharedResources;
-using Microsoft.AspNetCore.Components;
-using Microsoft.Fast.Components.FluentUI.DesignTokens;
+﻿using Microsoft.AspNetCore.Components;
 
 namespace DiabeticsSystem.BlazorUI.Features.Shared.Componants
 {

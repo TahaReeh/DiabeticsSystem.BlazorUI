@@ -1,7 +1,6 @@
-﻿using AutoMapper;
+﻿using DiabeticsSystem.BlazorUI.Core.Profiles;
 using DiabeticsSystem.BlazorUI.Features.Customer.Data.Model;
 using DiabeticsSystem.BlazorUI.Features.Customer.Domain.Entity;
-using DiabeticsSystem.BlazorUI.Features.Product.Data.Model;
 
 namespace DiabeticsSystem.BlazorUI.Features.Customer.Domain.Usecase
 {
@@ -17,18 +16,16 @@ namespace DiabeticsSystem.BlazorUI.Features.Customer.Domain.Usecase
     public class CustomerUsecase : ICustomerUsecase
     {
         private readonly IUnitOfWork unitOfWork;
-        private readonly IMapper mapper;
 
-        public CustomerUsecase(IUnitOfWork _unitOfWork, IMapper _mapper)
+        public CustomerUsecase(IUnitOfWork _unitOfWork)
         {
             unitOfWork = _unitOfWork;
-            mapper = _mapper;
         }
         public async Task<IQueryable<CustomerEntity>> GetAllCustomer()
         {
             var request = await unitOfWork.CustomerRepository.GetAllAsync(EndPoints.GetAllCustomers);
-            var dto = mapper.Map<List<CustomerEntity>>(request).AsQueryable();
-            return dto;
+            var dto = request.Select(x => x.MapCustomerFromModel());
+            return dto.AsQueryable();
         }
 
         public async Task<CustomerModel> GetCustomerDetail(Guid? id) =>

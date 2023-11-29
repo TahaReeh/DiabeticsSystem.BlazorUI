@@ -1,10 +1,4 @@
-﻿using DiabeticsSystem.BlazorUI.Core.Services;
-using DiabeticsSystem.BlazorUI.Core.SharedResources;
-using DiabeticsSystem.BlazorUI.Features.Home.Data.Model;
-using DiabeticsSystem.BlazorUI.Features.Home.Domain.Usecase;
-using DiabeticsSystem.BlazorUI.Features.Shared.Componants;
-using Microsoft.AspNetCore.Components;
-using Microsoft.Fast.Components.FluentUI.DesignTokens;
+﻿using DiabeticsSystem.BlazorUI.Features.Home.Domain.Usecase;
 
 namespace DiabeticsSystem.BlazorUI.Features.Shared
 {

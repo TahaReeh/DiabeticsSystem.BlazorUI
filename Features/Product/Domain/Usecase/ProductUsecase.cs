@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+﻿using DiabeticsSystem.BlazorUI.Core.Profiles;
 using DiabeticsSystem.BlazorUI.Features.Product.Data.Model;
 using DiabeticsSystem.BlazorUI.Features.Product.Domain.ViewModels;
 
@@ -16,23 +16,21 @@ namespace DiabeticsSystem.BlazorUI.Features.Product.Domain.Usecase
     public class ProductUsecase : IProductUsecase
     {
         private readonly IUnitOfWork unitOfWork;
-        private readonly IMapper mapper;
 
-        public ProductUsecase(IUnitOfWork _unitOfWork, IMapper _mapper)
+        public ProductUsecase(IUnitOfWork _unitOfWork)
         {
             unitOfWork = _unitOfWork;
-            mapper = _mapper;
         }
 
         public async Task<IQueryable<ProductEntity>> GetAllProduct()
         {
-            var request = await unitOfWork.ProductRepository.GetAllAsync(EndPoints.GetAllProducts);
-            var dto = mapper.Map<List<ProductEntity>>(request).AsQueryable();
-            return dto;
+            var request = (await unitOfWork.ProductRepository.GetAllAsync(EndPoints.GetAllProducts));
+            var dto = request.Select(x => x.MapProductFromModel());
+            return dto.AsQueryable();
         }
 
         public async Task<ProductModel> GetProductDetail(Guid? id) =>
-            await unitOfWork.ProductRepository.GetAsync(EndPoints.GetProduct,id);
+            await unitOfWork.ProductRepository.GetAsync(EndPoints.GetProduct, id);
 
 
         public async Task<string> AddProduct(ProductModel entity)

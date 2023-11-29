@@ -1,5 +1,10 @@
 ﻿global using DiabeticsSystem.BlazorUI;
+global using DiabeticsSystem.BlazorUI.Core.Services;
+global using DiabeticsSystem.BlazorUI.Core.SharedResources;
+global using DiabeticsSystem.BlazorUI.Features.Shared.Componants;
 global using DiabeticsSystem.BlazorUI.Features.Shared.Repository;
 global using DiabeticsSystem.BlazorUI.Features.Shared.Repository.Contract;
-global using Microsoft.Fast.Components.FluentUI;
+global using Microsoft.AspNetCore.Components;
+global using Microsoft.FluentUI.AspNetCore.Components;
+global using Microsoft.FluentUI.AspNetCore.Components.DesignTokens;
 global using DiabeticsSystem.BlazorUI.Core.Constants;
