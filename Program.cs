@@ -14,7 +14,7 @@ builder.Services.AddDataGridEntityFrameworkAdapter();
 
 builder.Services.AddScoped(sp => new HttpClient
 {
-    BaseAddress = new Uri("http://localhost:5172/api/") //localhost:5172/
+    BaseAddress = new Uri("http://localhost:86/api/") //localhost:5172/
 });
 
 builder.Services.AddScoped<ICookie, Cookie>();
