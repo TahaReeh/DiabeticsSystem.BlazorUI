@@ -1,8 +1,6 @@
-﻿using DiabeticsSystem.BlazorUI.Core.Services;
-using DiabeticsSystem.BlazorUI.Features.PatientMovement.Data.Model;
+﻿using DiabeticsSystem.BlazorUI.Features.PatientMovement.Data.Model;
 using DiabeticsSystem.BlazorUI.Features.PatientMovement.Domain.Usecase;
 using DiabeticsSystem.BlazorUI.Features.PatientMovement.Presentation.Componant;
-using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 
 namespace DiabeticsSystem.BlazorUI.Features.PatientMovement.Presentation.Logic
@@ -67,7 +65,6 @@ namespace DiabeticsSystem.BlazorUI.Features.PatientMovement.Presentation.Logic
         public async Task OnDeleteClick(Guid id)
         {
             var result = await AppDialogs.MessageBoxDelete("Patient Movement", DialogService);
-
             if (!result.Cancelled)
             {
                 await Usecase.RemovePatientMovement(id);

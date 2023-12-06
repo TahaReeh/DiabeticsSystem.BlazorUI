@@ -1,0 +1,32 @@
+﻿@implements IDialogContentComponent
+
+@* Header *@
+<FluentDialogHeader ShowDismiss="false">
+    <FluentStack VerticalAlignment="VerticalAlignment.Center">
+        <FluentLabel Typo="Typography.PaneHeader">
+            @Dialog.Instance.Parameters.Title
+        </FluentLabel>
+    </FluentStack>
+</FluentDialogHeader>
+
+@* Footer *@
+<FluentDialogFooter Class="p-0">
+    <FluentButton Appearance="Appearance.Accent"
+                  OnClick="@(ConfirmDialog)"
+                  Loading=@Loading>
+        Yes
+    </FluentButton>
+
+    <FluentButton Appearance="Appearance.Outline" OnClick="@CloseDialog">No</FluentButton>
+</FluentDialogFooter>
+
+@* Body *@
+<FluentDialogBody>
+    <FluentStack VerticalAlignment="VerticalAlignment.Center">
+        <FluentIcon Value="@(new Icons.Regular.Size24.QuestionCircle())" Color="Color.Accent" />
+        <FluentLabel Typo="Typography.Body">
+            Do you want to <strong>@Dialog.Instance.Parameters.AriaLabel</strong> this @Dialog.Instance.Parameters.Title ?
+        </FluentLabel>
+    </FluentStack>
+
+</FluentDialogBody>
