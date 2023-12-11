@@ -1,4 +1,5 @@
 ﻿using DiabeticsSystem.BlazorUI.Features.Customer.Data.Contract;
+using DiabeticsSystem.BlazorUI.Features.Doctor.Data.Contract;
 using DiabeticsSystem.BlazorUI.Features.Home.Data.Contract;
 using DiabeticsSystem.BlazorUI.Features.PatientMovement.Data.Contract;
 using DiabeticsSystem.BlazorUI.Features.Product.Data.Repository;
@@ -12,5 +13,6 @@ namespace DiabeticsSystem.BlazorUI.Features.Shared.Repository.Contract
         ICustomerRepository CustomerRepository { get; }
         IPatientMovementRepository PatientMovementRepository { get; }
         IHomeRepository HomeRepository { get; }
+        IDoctorRepository DoctorRepository { get; }
     }
 }

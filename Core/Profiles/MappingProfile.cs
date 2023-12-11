@@ -1,5 +1,7 @@
 ﻿using DiabeticsSystem.BlazorUI.Features.Customer.Data.Model;
 using DiabeticsSystem.BlazorUI.Features.Customer.Domain.Entity;
+using DiabeticsSystem.BlazorUI.Features.Doctor.Data.Model;
+using DiabeticsSystem.BlazorUI.Features.Doctor.Domain.Entity;
 using DiabeticsSystem.BlazorUI.Features.Product.Data.Model;
 using DiabeticsSystem.BlazorUI.Features.Product.Domain.ViewModels;
 
@@ -35,6 +37,21 @@ namespace DiabeticsSystem.BlazorUI.Core.Profiles
                 };
             }
             return new CustomerEntity();
+        }
+
+        public static DoctorEntity MapDoctorFromModel(this DoctorModel model)
+        {
+            if (model != null)
+            {
+                return new DoctorEntity
+                {
+                    Id = model.Id,
+                    Number = model.Number,
+                    Name = model.Name,
+                    Phone = model.Phone
+                };
+            }
+            return new DoctorEntity();
         }
     }
 }

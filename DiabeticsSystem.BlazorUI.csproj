@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <Folder Include="Features\Customer\Presentation\Componant\" />
+    <Folder Include="Features\Doctor\Presentation\Component\" />
     <Folder Include="Features\Home\Presentation\Component\" />
     <Folder Include="Features\Product\Presentation\Componants\" />
   </ItemGroup>

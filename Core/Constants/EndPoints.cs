@@ -36,5 +36,13 @@
         #region Analytics
         public const string GetHomeAnalytics = "Analytics/GetHomeAnalytics";
         #endregion
+
+        #region Doctor
+        public const string GetAllDoctors = "Doctor/GetAllDoctors";
+        public const string GetDoctor = "Doctor/GetDoctor?id=";
+        public const string AddDoctor = "Doctor/CreateDoctor";
+        public const string UpdateDoctor = "Doctor/UpdateDoctor";
+        public const string RemoveDoctor = "Doctor/DeleteDoctor?id=";
+        #endregion
     }
 }

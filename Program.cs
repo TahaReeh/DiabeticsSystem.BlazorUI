@@ -1,4 +1,5 @@
 using DiabeticsSystem.BlazorUI.Features.Customer.Domain.Usecase;
+using DiabeticsSystem.BlazorUI.Features.Doctor.Domain.Usecase;
 using DiabeticsSystem.BlazorUI.Features.Home.Domain.Usecase;
 using DiabeticsSystem.BlazorUI.Features.PatientMovement.Domain.Usecase;
 using DiabeticsSystem.BlazorUI.Features.Product.Domain.Usecase;
@@ -13,7 +14,7 @@ builder.Services.AddDataGridEntityFrameworkAdapter();
 
 builder.Services.AddScoped(sp => new HttpClient
 {
-    BaseAddress = new Uri("http://localhost:86/api/") //localhost:5172/
+    BaseAddress = new Uri("http://localhost:5172/api/") //localhost:5172/
 });
 
 builder.Services.AddScoped<ICookie, Cookie>();
@@ -23,5 +24,6 @@ builder.Services.AddScoped<IProductUsecase, ProductUsecase>();
 builder.Services.AddScoped<ICustomerUsecase, CustomerUsecase>();
 builder.Services.AddScoped<IPatientMovementUsecase, PatientMovementUsecase>();
 builder.Services.AddScoped<IHomeUsecase, HomeUsecase>();
+builder.Services.AddScoped<IDoctorUsecase, DoctorUsecase>();
 
 await builder.Build().RunAsync();

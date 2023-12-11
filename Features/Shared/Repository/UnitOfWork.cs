@@ -1,5 +1,7 @@
 ﻿using DiabeticsSystem.BlazorUI.Features.Customer.Data.Contract;
 using DiabeticsSystem.BlazorUI.Features.Customer.Domain.Repository;
+using DiabeticsSystem.BlazorUI.Features.Doctor.Data.Contract;
+using DiabeticsSystem.BlazorUI.Features.Doctor.Domain.Repository;
 using DiabeticsSystem.BlazorUI.Features.Home.Data.Contract;
 using DiabeticsSystem.BlazorUI.Features.Home.Domain.Repository;
 using DiabeticsSystem.BlazorUI.Features.PatientMovement.Data.Contract;
@@ -17,6 +19,7 @@ namespace DiabeticsSystem.BlazorUI.Features.Shared.Repository
         public ICustomerRepository CustomerRepository { get; private set; }
         public IPatientMovementRepository PatientMovementRepository { get; private set; }
         public IHomeRepository HomeRepository { get; private set; }
+        public IDoctorRepository DoctorRepository { get; private set; }
 
         public UnitOfWork(HttpClient http)
         {
@@ -26,6 +29,7 @@ namespace DiabeticsSystem.BlazorUI.Features.Shared.Repository
             CustomerRepository = new CustomerRepository(Http);
             PatientMovementRepository = new PatientMovementRepository(Http);
             HomeRepository = new HomeRepository(Http);
+            DoctorRepository = new DoctorRepository(Http);
         }
 
         public IRepository<T> GetRepository<T>() where T : class

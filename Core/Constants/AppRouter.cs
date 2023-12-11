@@ -9,5 +9,7 @@
         public const string CustomerUpsert = "/customerupsert/";
         public const string PatientMovement = "/patientmovement/";
         public const string PatientMovementByCustomer = "/patientmovementbycustomer";
+        public const string Doctor = "/doctor";
+        public const string DoctorUpsert = "/doctorupsert/";
     }
 }

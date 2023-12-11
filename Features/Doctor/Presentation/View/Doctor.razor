@@ -1,0 +1,56 @@
+﻿@inherits DoctorBase
+@attribute [Route(AppRouter.Doctor)]
+
+<PageTitle>@Title</PageTitle>
+
+<h3 class="mb-5">@Title</h3>
+
+<FluentGridCardWidget Title="@Title"
+                      OnBtnMainClick="@OnCreateClick"
+                      Visible="@Overlay"
+                      IncludeMainBtn=true>
+    <RawTemplate>
+        <FluentDataGrid Items="@Filtereditems"
+                        ResizableColumns=false
+                        Pagination="@pagination"
+                        GridTemplateColumns="0.2fr 0.8fr 1fr 0.3fr"
+                        Style="height: 405px; overflow:auto;">
+
+            <PropertyColumn Property="@(p => p.Number)" Sortable="true" />
+            <PropertyColumn Property="@(c => c.Name)"
+                            Sortable="true"
+                            Tooltip="true"
+                            Title="Name">
+                <ColumnOptions>
+                    <div class="search-box">
+                        <FluentSearch type="search"
+                                      Autofocus=true
+                                      @bind-Value=nameFilter
+                                      @oninput="HandleNameFilter"
+                                      @bind-Value:after="HandleClear"
+                                      Placeholder="Search by Name..." />
+                    </div>
+                </ColumnOptions>
+            </PropertyColumn>
+            <PropertyColumn Property="@(p => p.Phone)" Sortable="true" />
+
+            <TemplateColumn Title="Actions"
+                            Tooltip=true
+                            Context="_context">
+                <FluentButton IconStart="@(new Icons.Regular.Size16.Edit())"
+                              Id="BtnEdit2"
+                              OnClick="@(()=> OnEditClick(_context.Id))">
+                </FluentButton>
+                <FluentButton IconStart="@(new Icons.Regular.Size16.Delete().WithColor(AppColors.BtnDelete))"
+                              Id="BtnDelete"
+                              OnClick="@(()=> OnDeleteClick(_context.Id))">
+                </FluentButton>
+            </TemplateColumn>
+
+        </FluentDataGrid>
+
+        <FluentPaginator State="@pagination" />
+
+    </RawTemplate>
+
+</FluentGridCardWidget>
