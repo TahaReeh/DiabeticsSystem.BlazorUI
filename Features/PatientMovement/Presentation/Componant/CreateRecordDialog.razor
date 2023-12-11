@@ -44,6 +44,15 @@
                     OptionText="@(p=>p.Name)"
                     @bind-SelectedOption="@SelectedProduct" />
 
+    <FluentCombobox Label="Doctors List"
+                    Placeholder="Select Doctor"
+                    Class=" mb-3"
+                    Autocomplete="ComboboxAutocomplete.Inline"
+                    Items="DoctorList"
+                    OptionValue="@(p=>p.Id.ToString())"
+                    OptionText="@(p=>p.Name)"
+                    @bind-SelectedOption="@SelectedDoctor" />
+
     <FluentTextField Placeholder="Barcode"
                      Class=" mb-3"
                      Label="Barcode"

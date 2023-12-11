@@ -45,7 +45,7 @@ namespace DiabeticsSystem.BlazorUI.Features.PatientMovement.Presentation.Logic
 
         }
         public IQueryable<PatientMovementModel>? Filtereditems =>
-            Items?.Where(x => x.Customer.Name.Contains(nameFilter, StringComparison.CurrentCultureIgnoreCase));
+            Items?.Where(x => x.Doctor.Name.Contains(nameFilter, StringComparison.CurrentCultureIgnoreCase));
 
         public void HandleNameFilter(ChangeEventArgs args)
         {

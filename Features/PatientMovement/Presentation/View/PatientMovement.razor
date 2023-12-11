@@ -17,12 +17,12 @@
         <FluentDataGrid Items="@Filtereditems"
                         ResizableColumns=false
                         Pagination="@pagination"
-                        GridTemplateColumns="0.4fr 0.4fr 0.3fr 0.1fr"
+                        GridTemplateColumns="0.4fr 0.2fr 0.4fr 0.2fr 0.1fr"
                         Style="height: 405px; overflow:auto;">
-            <PropertyColumn Property="@(c => c.Customer.Name)"
+            <PropertyColumn Property="@(c => c.Doctor.Name)"
                             Sortable="true"
                             Tooltip="true"
-                            Title="Customer Name">
+                            Title="Doctor Name">
                 <ColumnOptions>
                     <div class="search-box">
                         <FluentSearch type="search"
@@ -35,6 +35,7 @@
                 </ColumnOptions>
             </PropertyColumn>
             <PropertyColumn Property="@(p => p.Product.Name)" Sortable="true" Title="Product Name" />
+            <PropertyColumn Property="@(p => p.Customer.Name)" Sortable="true" Title="Customer Name" />
             <PropertyColumn Property="@(p => p.CreatedDate)" Sortable="true" Title="Created Date" Format="dd/MM/yyyy" />
 
             <TemplateColumn Title="Actions"

@@ -9,7 +9,9 @@ namespace DiabeticsSystem.BlazorUI.Features.PatientMovement.Data.Model
         public Guid ProductId { get; set; }
         public string? Barcode { get; set; }
         public CustomerDTO Customer { get; set; } = default!;
-        public ProductDTO? Product { get; set; }
+        public ProductDTO Product { get; set; } = default!;
+        public DoctorDTO Doctor { get; set; } = default!;
+
     }
 
     public class ProductDTO
@@ -19,6 +21,12 @@ namespace DiabeticsSystem.BlazorUI.Features.PatientMovement.Data.Model
     }
 
     public class CustomerDTO
+    {
+        public Guid Id { get; set; }
+        public string Name { get; set; } = string.Empty;
+    }
+
+    public class DoctorDTO
     {
         public Guid Id { get; set; }
         public string Name { get; set; } = string.Empty;

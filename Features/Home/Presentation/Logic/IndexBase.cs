@@ -9,9 +9,6 @@ namespace DiabeticsSystem.BlazorUI.Features.Home.Presentation.Logic
         [Inject]
         private IHomeUsecase Usecase { get; set; } = default!;
 
-        [Inject]
-        private NavigationManager Nav { get; set; } = default!;
-
         public HomeAnalyticsVM homeAnalyticsVM = new();
 
         public bool Overlay = false;
