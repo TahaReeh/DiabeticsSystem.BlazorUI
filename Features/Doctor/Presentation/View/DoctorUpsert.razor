@@ -24,7 +24,8 @@
                     <div class="col-lg-6">
                         <FluentTextField @bind-Value="DoctorDetail.Address" Placeholder="Address" Class="mb-3" Style="width: 70%;" Label="Address"></FluentTextField>
                         <FluentTextField @bind-Value="DoctorDetail.PersonalId" Placeholder="Personal Id" Class="mb-3" Style="width: 70%;" Label="Personal Id"></FluentTextField>
-                        <FluentDatePicker @bind-Value="DoctorDetail.BirthDate" Class="mb-3" Style="width: 70%;" Label="BirthDate" />
+                        <FluentDatePicker @bind-Value="DoctorDetail.BirthDate" Class="mb-3" Style="width: 70%;" Label="BirthDate"
+                                          Culture="System.Globalization.CultureInfo.InvariantCulture" />
                         <FluentSelect TOption="int"
                                       @bind-Value="@FluentSelectIntValue"
                                       Class="mb-3"
