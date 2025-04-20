@@ -13,48 +13,47 @@
                 <FluentValidationSummary />
                 <div class="row">
                     <div class="col-lg-6">
-                        <FluentNumberField @bind-Value="MaxNumber" ReadOnly="true"
-                                           Class="mb-3" style="width: 70%;" Label="Number">
+                        <FluentNumberField @bind-Value="MaxNumber" ReadOnly="true" Class="mb-3" style="width: 70%;"
+                            Label="Number">
                         </FluentNumberField>
-                        <FluentTextField Autofocus=true @bind-Value="DoctorDetail!.Name" Placeholder="Name" Class="mb-3" Style="width: 70%;" Label="Name"></FluentTextField>
-                        <FluentTextField TextFieldType="TextFieldType.Tel" @bind-Value="DoctorDetail.Phone" Placeholder="Phone" Class="mb-3" Style="width: 70%;" Label="Phone"></FluentTextField>
-                        <FluentTextField TextFieldType="TextFieldType.Tel" @bind-Value="DoctorDetail.SecondPhone" Placeholder="Second Phone" Class="mb-3" Style="width: 70%;" Label="Second Phone"></FluentTextField>
-                        <FluentTextField TextFieldType="TextFieldType.Email" @bind-Value="DoctorDetail.Email" Placeholder="Email" Class="mb-3" Style="width: 70%;" Label="Email"></FluentTextField>
+                        <FluentTextField Autofocus=true @bind-Value="DoctorDetail!.Name" Placeholder="Name" Class="mb-3"
+                            Style="width: 70%;" Label="Name"></FluentTextField>
+                        <FluentTextField TextFieldType="TextFieldType.Tel" @bind-Value="DoctorDetail.Phone"
+                            Placeholder="Phone" Class="mb-3" Style="width: 70%;" Label="Phone"></FluentTextField>
+                        <FluentTextField TextFieldType="TextFieldType.Tel" @bind-Value="DoctorDetail.SecondPhone"
+                            Placeholder="Second Phone" Class="mb-3" Style="width: 70%;" Label="Second Phone">
+                        </FluentTextField>
+                        <FluentTextField TextFieldType="TextFieldType.Email" @bind-Value="DoctorDetail.Email"
+                            Placeholder="Email" Class="mb-3" Style="width: 70%;" Label="Email"></FluentTextField>
                     </div>
                     <div class="col-lg-6">
-                        <FluentTextField @bind-Value="DoctorDetail.Address" Placeholder="Address" Class="mb-3" Style="width: 70%;" Label="Address"></FluentTextField>
-                        <FluentTextField @bind-Value="DoctorDetail.PersonalId" Placeholder="Personal Id" Class="mb-3" Style="width: 70%;" Label="Personal Id"></FluentTextField>
-                        <FluentDatePicker @bind-Value="DoctorDetail.BirthDate" Class="mb-3" Style="width: 70%;" Label="BirthDate"
-                                          Culture="System.Globalization.CultureInfo.InvariantCulture" />
-                        <FluentSelect TOption="int"
-                                      @bind-Value="@FluentSelectIntValue"
-                                      Class="mb-3"
-                                      Style="width: 70%;"
-                                      Label="Gender">
+                        <FluentTextField @bind-Value="DoctorDetail.Address" Placeholder="Address" Class="mb-3"
+                            Style="width: 70%;" Label="Address"></FluentTextField>
+                        <FluentTextField @bind-Value="DoctorDetail.PersonalId" Placeholder="Personal Id" Class="mb-3"
+                            Style="width: 70%;" Label="Personal Id"></FluentTextField>
+                        <FluentDatePicker @bind-Value="DoctorDetail.BirthDate" Class="mb-3" Style="width: 70%;"
+                            Label="BirthDate" Culture="System.Globalization.CultureInfo.InvariantCulture" />
+                        <FluentSelect TOption="int" @bind-Value="@FluentSelectIntValue" Class="mb-3" Style="width: 70%;"
+                            Label="Gender">
                             <FluentOption Value="1">
                                 Male
                                 <FluentIcon Icon="Icons.Regular.Size20.Person" Color="@Color.Neutral" Slot="start" />
                             </FluentOption>
                             <FluentOption Value="2">
                                 Female
-                                <FluentIcon Icon="Icons.Regular.Size20.PersonCircle" Color="@Color.Neutral" Slot="start" />
+                                <FluentIcon Icon="Icons.Regular.Size20.PersonCircle" Color="@Color.Neutral"
+                                    Slot="start" />
                             </FluentOption>
                         </FluentSelect>
                     </div>
                 </div>
                 <div class="mt-5 pb-3">
-                    <FluentButton IconStart="@(new Icons.Regular.Size16.Save())"
-                                  Type="ButtonType.Submit"
-                                  Title="Save"
-                                  Appearance="Appearance.Accent"
-                                  Style="width:100px"
-                                  Loading=@loading>
+                    <FluentButton IconStart="@(new Icons.Regular.Size16.Save())" Type="ButtonType.Submit" Title="Save"
+                        Appearance="Appearance.Accent" Style="width:100px" Loading=@loading>
                         Save
                     </FluentButton>
                     <FluentButton IconStart="@(new Icons.Regular.Size16.ArrowCircleLeft())"
-                                  Appearance="Appearance.Outline"
-                                  Title="Cancel"
-                                  OnClick="@OnCancelClick">
+                        Appearance="Appearance.Outline" Title="Cancel" OnClick="@OnCancelClick">
                         Cancel
                     </FluentButton>
                 </div>

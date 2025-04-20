@@ -49,7 +49,7 @@ namespace DiabeticsSystem.BlazorUI.Features.PatientMovement.Presentation.Logic
 
         public async Task SaveDialog(FluentDialog Dialog)
         {
-            if (SelectedCustomer is not null && SelectedProduct is not null 
+            if (SelectedCustomer is not null && SelectedProduct is not null
                 && SelectedDoctor is not null && !string.IsNullOrEmpty(NewBarcode))
             {
                 loading = true;
